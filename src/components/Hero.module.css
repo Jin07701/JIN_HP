@@ -1,0 +1,119 @@
+.hero {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    /* Full viewport height for impact */
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Background Image */
+    background-image: url('/images/hero-main.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Overlay to ensure text readability */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.75);
+    /* White overlay, 75% opacity */
+    backdrop-filter: blur(2px);
+    /* Slight blur for focus on text */
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 1200px;
+    padding: 0 2rem;
+}
+
+.headline {
+    font-size: 5rem;
+    /* Large Findy-style text */
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.05em;
+    color: #111;
+    /* Dark text on light overlay */
+}
+
+/* Gradient text effect for emphasize */
+.gradientText {
+    background: linear-gradient(135deg, #0052D4, #4364F7, #6FB1FC);
+    /* Blue gradient like Findy/Tech */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.redAccent {
+    color: #EB0A1E;
+    /* Keep the Toyota/Brand red accent */
+}
+
+.subHeadline {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 4rem;
+    line-height: 1.8;
+}
+
+.scrollDown {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #333;
+    animation: bounce 2s infinite;
+    z-index: 2;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+@media (max-width: 900px) {
+    .headline {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .headline {
+        font-size: 2.5rem;
+    }
+
+    .subHeadline {
+        font-size: 1rem;
+    }
+}

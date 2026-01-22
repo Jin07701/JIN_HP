@@ -1,0 +1,164 @@
+.section {
+    padding: 80px 0;
+    background-color: var(--color-bg-subtle);
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.header {
+    margin-bottom: 50px;
+    text-align: left;
+    /* Toyota often uses left align or center, keeping standard clean header */
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    margin: 0;
+    letter-spacing: 0.05em;
+    font-family: var(--font-heading);
+}
+
+.subTitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: white;
+    border-radius: 4px;
+    /* Slight rounded or square for Toyota? Usually quite square/sharp */
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.imageWrapper {
+    height: 200px;
+    width: 100%;
+    position: relative;
+    background-color: #eee;
+    overflow: hidden;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.card:hover .image {
+    transform: scale(1.05);
+}
+
+.placeholderImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    background-color: #f0f0f0;
+}
+
+.overlayText {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.card:hover .overlayText {
+    opacity: 1;
+}
+
+.viewDetails {
+    color: white;
+    font-weight: 700;
+    border: 1px solid white;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+.content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: var(--color-primary);
+}
+
+.cardSubtitle {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.viewAll {
+    margin-top: 50px;
+    text-align: right;
+}
+
+.viewAllBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    position: relative;
+    padding-right: 20px;
+}
+
+.viewAllBtn::after {
+    content: '>';
+    position: absolute;
+    right: 0;
+    transition: right 0.3s;
+}
+
+.viewAllBtn:hover::after {
+    right: -5px;
+}

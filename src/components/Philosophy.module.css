@@ -1,0 +1,96 @@
+.section {
+    padding: 80px 0;
+    background-color: var(--color-bg);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 0.1em;
+}
+
+.subTitle {
+    color: var(--color-text-light);
+    font-size: 1rem;
+}
+
+.mission {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.missionTitle {
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 20px;
+    letter-spacing: 0.1em;
+}
+
+.missionStatement {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.missionDesc {
+    line-height: 2;
+    color: var(--color-text-light);
+}
+
+.valueTitle {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 40px;
+    letter-spacing: 0.1em;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--color-white);
+    padding: 40px 30px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.cardHeader {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--color-bg-subtle);
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.cardTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.cardDesc {
+    color: var(--color-text-light);
+    line-height: 1.8;
+    font-size: 0.95rem;
+}

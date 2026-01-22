@@ -1,77 +1,46 @@
 :root {
-  /* Premium Palette */
-  --color-primary: #0a1930;
-  /* Deep Navy */
-  --color-secondary: #c5a059;
-  /* Muted Gold */
-  --color-secondary-light: #e6c888;
-  --color-bg: #ffffff;
-  --color-bg-subtle: #f8f9fa;
-  --color-text: #2c2c2c;
+  /* Toyota-like Color Palette */
+  --color-primary: #000000;
+  /* Main Text / Headers */
+  --color-secondary: #EB0A1E;
+  /* Toyota Red Accent */
+  --color-bg: #FFFFFF;
+  --color-bg-subtle: #F7F7F7;
+  /* Light Gray Background */
+  --color-text: #333333;
   --color-text-light: #666666;
-  --color-white: #ffffff;
+  --color-border: #E0E0E0;
+  --color-white: #FFFFFF;
 
-  /* Spacing & Layout */
-  --max-width: 1200px;
-  --header-height: 80px;
-  --border-radius: 8px;
+  --max-width: 1280px;
+  --header-height: 120px;
+  /* Taller for 2 rows */
 
-  /* Typography */
-  --font-heading: var(--font-noto), 'Noto Sans JP', sans-serif;
-  --font-body: var(--font-noto), 'Noto Sans JP', sans-serif;
-}
-
-/* Reset & Base */
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  /* Fonts - mimicking Toyota Type / Noto Sans JP */
+  --font-family: var(--font-noto), "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  --font-heading: var(--font-noto), sans-serif;
 }
 
 body {
-  font-family: var(--font-body);
   color: var(--color-text);
   background: var(--color-bg);
-  line-height: 1.6;
-  overflow-x: hidden;
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 a {
-  color: inherit;
   text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
 }
 
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
-}
-
-/* Utilities */
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.section {
-  padding: 5rem 0;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
+dl,
+dt,
+dd {
+  margin: 0;
 }

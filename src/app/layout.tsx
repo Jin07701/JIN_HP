@@ -9,8 +9,8 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "DirectJapan | Connecting the World Directly",
-  description: "DirectJapan Corporate Website - DirectConnect Operation",
+  title: "KANAME | AI-Driven Intelligent Matching",
+  description: "KANAME Corporate Website - DirectConnect Operation",
 };
 
 export default function RootLayout({

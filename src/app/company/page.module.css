@@ -1,0 +1,104 @@
+.section {
+    padding: 80px 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 0.1em;
+}
+
+.subTitle {
+    color: var(--color-text-light);
+    font-size: 1rem;
+}
+
+.messageContent {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+}
+
+.directorImage {
+    flex: 0 0 350px;
+}
+
+.profileImg {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.messageText {
+    flex: 1;
+}
+
+.messageTitle {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.messageText p {
+    line-height: 2;
+    color: var(--color-text-light);
+    margin-bottom: 40px;
+}
+
+.sign {
+    text-align: right;
+    font-weight: 700;
+}
+
+.accessContent {
+    background: var(--color-bg-subtle);
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.address h3 {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.address p {
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.mapPlaceholder {
+    width: 100%;
+    height: 400px;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+}
+
+@media (max-width: 768px) {
+    .messageContent {
+        flex-direction: column;
+    }
+
+    .directorImage {
+        flex: auto;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}

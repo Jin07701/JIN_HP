@@ -1,0 +1,17 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 2rem;
+}
+
+.lead {
+    text-align: center;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.formWrapper {
+    background-color: #f9f9f9;
+    padding: 40px;
+    border-radius: 4px;
+}

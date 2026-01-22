@@ -1,0 +1,45 @@
+.navBar {
+    background-color: #333;
+    /* Dark background like Toyota's subnav */
+    width: 100%;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+.list li {
+    margin: 0;
+}
+
+.link {
+    display: block;
+    padding: 15px 25px;
+    color: #bbb;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s, background-color 0.3s;
+    border-bottom: 3px solid transparent;
+}
+
+.link:hover {
+    color: white;
+    background-color: #444;
+}
+
+.activeItem .link {
+    color: white;
+    border-bottom-color: var(--color-secondary);
+    background-color: #222;
+}

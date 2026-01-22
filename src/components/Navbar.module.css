@@ -1,29 +1,22 @@
-.header {
+.navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: var(--header-height);
+    height: 80px;
+    /* Explicit height */
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
     z-index: 1000;
-    transition: all 0.4s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    /* Subtle shadow for pill effect later if needed, here just clean border */
     display: flex;
     align-items: center;
-    color: var(--color-white);
-}
-
-/* Glassmorphism state on scroll */
-.scrolled {
-    background: rgba(10, 25, 48, 0.85);
-    /* Deep Navy transparent */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    height: 70px;
 }
 
 .container {
-    max-width: var(--max-width);
     width: 100%;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
@@ -31,59 +24,146 @@
     align-items: center;
 }
 
-.logo {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.5rem;
-    letter-spacing: 0.05em;
-    color: inherit;
+/* Left: Logo */
+.logoLink {
+    text-decoration: none;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.nav {
+.logoText {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-family: var(--font-noto);
+    /* Ensure Japnese font applies */
+}
+
+/* Center: Pill Navigation */
+.centerNav {
+    flex: 1;
     display: flex;
-    gap: 2rem;
+    justify-content: center;
+}
+
+.pillNav {
+    display: flex;
+    list-style: none;
+    background-color: #f7f7f7;
+    padding: 5px;
+    /* Padding for pill container */
+    border-radius: 9999px;
+    gap: 0;
+    /* Items touch but have padding */
+}
+
+.pillItem {
+    display: block;
+    padding: 10px 28px;
+    border-radius: 9999px;
+    text-decoration: none;
+    color: #666;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.pillItem:hover {
+    color: var(--color-primary);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.pillItem.active {
+    background-color: #fff;
+    /* White pill on light grey bg */
+    color: var(--color-primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    /* Slight lift */
+}
+
+/* Right: CTAs */
+.rightSection {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* Increased gap for lang toggle */
+}
+
+.langToggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    background: #f0f0f0;
+    padding: 8px 12px;
+    border-radius: 999px;
+    /* Pill background for toggle */
+}
+
+.langBtn {
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #999;
+    border-radius: 4px;
+    transition: all 0.2s;
+    font-size: 0.85rem;
+}
+
+.langBtn:hover {
+    color: #666;
+}
+
+.activeLang {
+    background-color: #fff;
+    color: var(--color-primary);
+    font-weight: 800;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.langSeparator {
+    color: #ccc;
+    font-size: 0.8rem;
+    display: none;
+    /* Hide separator if using button style */
+}
+
+.contactBtn {
+    background-color: var(--color-text);
+    /* Black button like Findy's primary */
+    color: var(--color-white);
+    padding: 12px 24px;
+    border-radius: 9999px;
+    /* Pill button */
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.2s;
+}
+
+.contactBtn:hover {
+    opacity: 0.8;
+}
+
+.menuBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+    display: flex;
     align-items: center;
 }
 
-.link {
-    font-size: 0.95rem;
-    font-weight: 500;
-    position: relative;
-    transition: color 0.3s;
-}
-
-.link:hover {
-    color: var(--color-secondary);
-}
-
-.link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1px;
-    bottom: -4px;
-    left: 0;
-    background-color: var(--color-secondary);
-    transition: width 0.3s;
-}
-
-.link:hover::after {
-    width: 100%;
-}
-
-.cta {
-    padding: 0.6rem 1.4rem;
-    border: 1px solid var(--color-secondary);
-    border-radius: 4px;
-    color: var(--color-secondary);
-    transition: all 0.3s;
-}
-
-.cta:hover {
-    background: var(--color-secondary);
-    color: var(--color-primary);
-}
-
-.cta::after {
-    display: none;
+@media (max-width: 900px) {
+    .centerNav {
+        display: none;
+    }
 }

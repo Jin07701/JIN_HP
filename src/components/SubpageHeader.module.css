@@ -1,0 +1,71 @@
+.headerWrapper {
+    background-color: #f5f5f5;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.headerContent {
+    background-color: #fff;
+    padding: 60px 0 40px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.titles {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.titleEn {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    margin: 0 0 10px 0;
+    font-family: var(--font-heading);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.titleJa {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin: 0;
+    font-weight: 500;
+}
+
+.breadcrumbs {
+    background-color: #f9f9f9;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.breadcrumbContainer {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.breadcrumbLink {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumbLink:hover {
+    color: var(--color-secondary);
+    text-decoration: underline;
+}
+
+.separator {
+    margin: 0 8px;
+    color: #999;
+    font-size: 0.7rem;
+}
+
+.current {
+    color: #333;
+    font-weight: 700;
+}
