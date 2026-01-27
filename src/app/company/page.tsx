@@ -39,8 +39,7 @@ export default function CompanyPage() {
                         </div>
                         <div className={styles.messageContent}>
                             <div className={styles.directorImage}>
-                                {/* Placeholder for uploaded image if needed, or keeping current style */}
-                                <img src="/images/jin-profile.jpg" alt="Representative" className={styles.profileImg} />
+                                <img src="/images/hero-premium.png" alt="Representative" className={styles.profileImg} />
                             </div>
                             <div className={styles.messageText}>
                                 <h3 className={styles.messageTitle}>

@@ -5,7 +5,7 @@ import styles from './Projects.module.css';
 const projectData = [
     {
         id: 1,
-        image: '/images/project-finance.jpg', // Placeholder
+        image: '/images/direct-connect-showcase.png',
         category: 'Development',
         client: '大手金融機関',
         title: '基幹システム クラウド移行・マイクロサービス化支援',
@@ -14,7 +14,7 @@ const projectData = [
     },
     {
         id: 2,
-        image: '/images/project-ai.jpg', // Placeholder
+        image: '/images/direct-connect-match.png',
         category: 'AI / Data',
         client: 'Human Resources Tech',
         title: 'AIマッチングアルゴリズム開発・精度向上',
@@ -23,7 +23,7 @@ const projectData = [
     },
     {
         id: 3,
-        image: '/images/project-security.jpg', // Placeholder
+        image: '/images/company-profile-concept.jpg',
         category: 'Security',
         client: 'FinTech Startup',
         title: '金融セキュリティ監査・ISMS取得コンサルティング',
