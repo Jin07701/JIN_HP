@@ -1,21 +1,19 @@
 .hero {
     position: relative;
     width: 100%;
-    height: 90vh;
-    /* Full viewport height for impact */
-    min-height: 600px;
+    height: 100vh;
+    min-height: 800px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    /* Background Image */
-    background-image: url('/images/hero-main.jpg');
+    background-image: url('/images/hero-premium.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-/* Overlay to ensure text readability */
+/* Darker, sophisticated overlay */
 .hero::before {
     content: '';
     position: absolute;
@@ -23,10 +21,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.75);
-    /* White overlay, 75% opacity */
-    backdrop-filter: blur(2px);
-    /* Slight blur for focus on text */
+    background: linear-gradient(135deg,
+            rgba(10, 17, 40, 0.9) 0%,
+            rgba(0, 31, 84, 0.7) 50%,
+            rgba(10, 17, 40, 0.8) 100%);
     z-index: 1;
 }
 
@@ -34,53 +32,105 @@
     position: relative;
     z-index: 2;
     text-align: center;
-    max-width: 1200px;
+    max-width: 1000px;
     padding: 0 2rem;
 }
 
 .headline {
-    font-size: 5rem;
-    /* Large Findy-style text */
-    font-weight: 900;
-    line-height: 1.15;
-    margin-bottom: 2.5rem;
-    letter-spacing: 0.05em;
-    color: #111;
-    /* Dark text on light overlay */
+    font-size: 5.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+    color: var(--color-white);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Gradient text effect for emphasize */
 .gradientText {
-    background: linear-gradient(135deg, #0052D4, #4364F7, #6FB1FC);
-    /* Blue gradient like Findy/Tech */
+    background: linear-gradient(135deg, var(--color-white), var(--color-platinum));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
 
-.redAccent {
-    color: #EB0A1E;
-    /* Keep the Toyota/Brand red accent */
+.accentText {
+    color: var(--color-accent);
+    position: relative;
+    display: inline-block;
+}
+
+.accentText::after {
+    content: '';
+    position: absolute;
+    bottom: 0.1em;
+    left: 0;
+    width: 100%;
+    height: 0.1em;
+    background: var(--color-accent);
+    opacity: 0.3;
 }
 
 .subHeadline {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--color-platinum);
+    margin-bottom: 3.5rem;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    opacity: 0.9;
+}
+
+.ctaContainer {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.primaryButton {
+    padding: 1rem 2.5rem;
+    background: var(--color-accent);
+    color: var(--color-primary);
     font-weight: 700;
-    color: #333;
-    margin-bottom: 4rem;
-    line-height: 1.8;
+    border-radius: 4px;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 14px 0 rgba(212, 175, 55, 0.39);
+}
+
+.primaryButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.23);
+    filter: brightness(1.1);
+}
+
+.secondaryButton {
+    padding: 1rem 2.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: var(--color-white);
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .scrollDown {
     position: absolute;
-    bottom: 30px;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #333;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-platinum);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
     animation: bounce 2s infinite;
     z-index: 2;
+    opacity: 0.7;
 }
 
 @keyframes bounce {
@@ -110,10 +160,14 @@
 
 @media (max-width: 600px) {
     .headline {
-        font-size: 2.5rem;
+        font-size: 2.75rem;
     }
 
     .subHeadline {
-        font-size: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .ctaContainer {
+        flex-direction: column;
     }
 }

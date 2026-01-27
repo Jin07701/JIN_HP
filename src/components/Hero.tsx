@@ -6,15 +6,22 @@ export default function Hero() {
         <section className={styles.hero}>
             <div className={styles.content}>
                 <h1 className={styles.headline}>
-                    <span className={styles.gradientText}>つくる人と、</span><br />
-                    <span className={styles.gradientText}>世界を</span>
-                    <span className={styles.redAccent}>変える。</span>
+                    <span className={styles.gradientText}>卓越したエンジニアと、</span><br />
+                    <span className={styles.accentText}>理想の未来を。</span>
                 </h1>
                 <p className={styles.subHeadline}>
-                    つくる人がいなければ、何も生まれません。<br />
-                    KANAMEは、テクノロジーで世界をアップデートし、<br />
-                    人と企業の新たな可能性を切り拓きます。
+                    KANAMEは、頂点を極めるテクノロジーで世界を再定義し、<br />
+                    選ばれしエンジニアと企業が共鳴する、新たな頂を目指します。
                 </p>
+                <div className={styles.ctaContainer}>
+                    <Link href="/contact" className={styles.primaryButton}>
+                        PROJECT START
+                    </Link>
+                    <Link href="/service" className={styles.secondaryButton}>
+                        OUR SERVICE
+                    </Link>
+                </div>
+                <div className={styles.scrollDown}>SCROLL</div>
             </div>
         </section>
     );

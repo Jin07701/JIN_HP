@@ -3,20 +3,20 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 80px;
-    /* Explicit height */
-    background-color: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
+    height: var(--header-height);
+    background-color: rgba(10, 17, 40, 0.85);
+    /* Deep Navy Translucent */
+    backdrop-filter: blur(12px);
     z-index: 1000;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-    /* Subtle shadow for pill effect later if needed, here just clean border */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     align-items: center;
+    transition: all 0.3s ease;
 }
 
 .container {
     width: 100%;
-    max-width: 1280px;
+    max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
@@ -27,18 +27,18 @@
 /* Left: Logo */
 .logoLink {
     text-decoration: none;
-    color: var(--color-text);
+    color: var(--color-white);
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
 .logoText {
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    font-family: var(--font-noto);
-    /* Ensure Japnese font applies */
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: var(--color-platinum);
+    text-transform: uppercase;
 }
 
 /* Center: Pill Navigation */
@@ -51,115 +51,109 @@
 .pillNav {
     display: flex;
     list-style: none;
-    background-color: #f7f7f7;
-    padding: 5px;
-    /* Padding for pill container */
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 4px;
     border-radius: 9999px;
-    gap: 0;
-    /* Items touch but have padding */
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .pillItem {
     display: block;
-    padding: 10px 28px;
+    padding: 8px 24px;
     border-radius: 9999px;
     text-decoration: none;
-    color: #666;
-    font-weight: 700;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
+    color: var(--color-platinum);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     white-space: nowrap;
+    opacity: 0.7;
 }
 
 .pillItem:hover {
-    color: var(--color-primary);
-    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--color-white);
+    opacity: 1;
 }
 
 .pillItem.active {
-    background-color: #fff;
-    /* White pill on light grey bg */
+    background-color: var(--color-accent);
     color: var(--color-primary);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    /* Slight lift */
+    font-weight: 700;
+    opacity: 1;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
 }
 
 /* Right: CTAs */
 .rightSection {
     display: flex;
     align-items: center;
-    gap: 20px;
-    /* Increased gap for lang toggle */
+    gap: 1.5rem;
 }
 
 .langToggle {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    background: #f0f0f0;
-    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px;
     border-radius: 999px;
-    /* Pill background for toggle */
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .langBtn {
     background: none;
     border: none;
-    padding: 4px 8px;
+    padding: 6px 12px;
     cursor: pointer;
     font-weight: 600;
-    color: #999;
-    border-radius: 4px;
+    color: var(--color-platinum);
+    opacity: 0.5;
+    border-radius: 999px;
     transition: all 0.2s;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
 }
 
 .langBtn:hover {
-    color: #666;
+    opacity: 0.8;
 }
 
 .activeLang {
-    background-color: #fff;
-    color: var(--color-primary);
-    font-weight: 800;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.langSeparator {
-    color: #ccc;
-    font-size: 0.8rem;
-    display: none;
-    /* Hide separator if using button style */
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--color-white);
+    opacity: 1;
 }
 
 .contactBtn {
-    background-color: var(--color-text);
-    /* Black button like Findy's primary */
-    color: var(--color-white);
-    padding: 12px 24px;
-    border-radius: 9999px;
-    /* Pill button */
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    padding: 10px 20px;
+    border-radius: 4px;
     text-decoration: none;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: opacity 0.2s;
+    transition: all 0.3s ease;
 }
 
 .contactBtn:hover {
-    opacity: 0.8;
+    filter: brightness(1.1);
+    transform: translateY(-1px);
 }
 
 .menuBtn {
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--color-text);
+    color: var(--color-white);
     display: flex;
     align-items: center;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.menuBtn:hover {
+    opacity: 1;
 }
 
 @media (max-width: 900px) {

@@ -1,6 +1,6 @@
 .section {
-    padding: 80px 0;
-    background-color: var(--color-bg-subtle);
+    padding: 100px 0;
+    background-color: var(--color-bg-dark);
 }
 
 .container {
@@ -10,62 +10,65 @@
 }
 
 .header {
-    margin-bottom: 50px;
-    text-align: left;
-    /* Toyota often uses left align or center, keeping standard clean header */
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 20px;
+    margin-bottom: 60px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 30px;
     display: flex;
-    align-items: baseline;
-    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .title {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: var(--color-primary);
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--color-white);
     margin: 0;
-    letter-spacing: 0.05em;
-    font-family: var(--font-heading);
+    letter-spacing: 0.1em;
 }
 
 .subTitle {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--color-text-light);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-accent);
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 40px;
 }
 
 .card {
-    background: white;
-    border-radius: 4px;
-    /* Slight rounded or square for Toyota? Usually quite square/sharp */
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: inherit;
     position: relative;
+    backdrop-filter: blur(5px);
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--color-accent);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .imageWrapper {
-    height: 200px;
+    height: 240px;
     width: 100%;
     position: relative;
-    background-color: #eee;
+    background-color: var(--color-secondary);
     overflow: hidden;
 }
 
@@ -73,11 +76,13 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: 0.8;
 }
 
 .card:hover .image {
-    transform: scale(1.05);
+    transform: scale(1.08);
+    opacity: 1;
 }
 
 .placeholderImage {
@@ -86,20 +91,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ccc;
-    background-color: #f0f0f0;
+    color: var(--color-accent);
+    background-color: var(--color-secondary);
 }
 
 .overlayText {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to top, rgba(10, 17, 40, 0.8), transparent);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    padding: 20px;
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -109,56 +114,68 @@
 }
 
 .viewDetails {
-    color: white;
+    color: var(--color-white);
     font-weight: 700;
-    border: 1px solid white;
-    padding: 8px 16px;
-    font-size: 0.9rem;
+    border: 1px solid var(--color-accent);
+    padding: 6px 16px;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    background: rgba(212, 175, 55, 0.1);
 }
 
 .content {
-    padding: 20px;
+    padding: 24px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
 .cardTitle {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     font-weight: 700;
     margin: 0 0 0.5rem 0;
-    color: var(--color-primary);
+    color: var(--color-white);
 }
 
 .cardSubtitle {
-    font-size: 0.85rem;
-    color: var(--color-text-light);
+    font-size: 0.9rem;
+    color: var(--color-platinum);
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.6;
+    opacity: 0.7;
 }
 
 .viewAll {
-    margin-top: 50px;
-    text-align: right;
+    margin-top: 60px;
+    text-align: center;
 }
 
 .viewAllBtn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
     font-weight: 700;
-    color: var(--color-secondary);
-    position: relative;
-    padding-right: 20px;
+    color: var(--color-accent);
+    text-decoration: none;
+    padding: 12px 32px;
+    border: 1px solid var(--color-accent);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
 }
 
-.viewAllBtn::after {
-    content: '>';
-    position: absolute;
-    right: 0;
-    transition: right 0.3s;
+.viewAllBtn:hover {
+    background: var(--color-accent);
+    color: var(--color-primary);
 }
 
-.viewAllBtn:hover::after {
-    right: -5px;
+@media (max-width: 600px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .grid {
+        gap: 20px;
+    }
 }

@@ -1,24 +1,24 @@
 :root {
-  /* Toyota-like Color Palette */
-  --color-primary: #000000;
-  /* Main Text / Headers */
-  --color-secondary: #EB0A1E;
-  /* Toyota Red Accent */
+  /* Premium Dark / Sophisticated Palette */
+  --color-primary: #0A1128;     /* Deep Navy */
+  --color-secondary: #001F54;   /* Midnight Blue */
+  --color-accent: #D4AF37;      /* Noble Gold */
+  --color-accent-subtle: #E6D5A7;
+  --color-platinum: #E5E5E5;
+  
   --color-bg: #FFFFFF;
-  --color-bg-subtle: #F7F7F7;
-  /* Light Gray Background */
-  --color-text: #333333;
-  --color-text-light: #666666;
-  --color-border: #E0E0E0;
+  --color-bg-dark: #050A18;
+  --color-bg-subtle: #F8FAFC;
+  
+  --color-text: #1E293B;        /* Slate 800 */
+  --color-text-muted: #64748B;   /* Slate 500 */
   --color-white: #FFFFFF;
+  
+  --max-width: 1200px;
+  --header-height: 80px;
 
-  --max-width: 1280px;
-  --header-height: 120px;
-  /* Taller for 2 rows */
-
-  /* Fonts - mimicking Toyota Type / Noto Sans JP */
-  --font-family: var(--font-noto), "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-  --font-heading: var(--font-noto), sans-serif;
+  /* Fonts - Modern Premium Typography */
+  --font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 body {
@@ -27,6 +27,8 @@ body {
   font-family: var(--font-family);
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {

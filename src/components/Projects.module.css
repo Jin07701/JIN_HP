@@ -1,10 +1,11 @@
 .section {
-    padding: 100px 0;
-    background-color: var(--color-bg-subtle);
+    padding: 120px 0;
+    background-color: var(--color-bg-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .container {
-    max-width: 1200px;
+    max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -13,26 +14,29 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 60px;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 20px;
+    margin-bottom: 80px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 30px;
 }
 
 .title {
-    font-size: 3rem;
-    font-weight: 900;
+    font-size: 3.5rem;
+    font-weight: 800;
     margin-bottom: 5px;
     line-height: 1;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
+    color: var(--color-white);
 }
 
 .subTitle {
-    font-size: 1rem;
-    color: var(--color-text-light);
+    font-size: 0.9rem;
+    color: var(--color-accent);
     margin-left: 20px;
     margin-bottom: 8px;
-    /* Align with title baseline */
     flex-grow: 1;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
 }
 
 .viewAll {
@@ -40,83 +44,122 @@
     align-items: center;
     gap: 8px;
     font-weight: 700;
-    color: var(--color-text);
+    color: var(--color-platinum);
     text-decoration: none;
-    transition: opacity 0.2s;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
 }
 
 .viewAll:hover {
-    opacity: 0.7;
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    background: rgba(212, 175, 55, 0.05);
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 40px;
 }
 
 .card {
-    background: #fff;
-    padding: 40px;
-    border-radius: 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 48px;
+    border-radius: 8px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    border-color: #eee;
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
 
 .cardHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .categoryBadge {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: var(--color-primary);
-    background: rgba(66, 133, 244, 0.1);
-    padding: 6px 12px;
-    border-radius: 999px;
-    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    background: rgba(212, 175, 55, 0.1);
+    padding: 6px 14px;
+    border-radius: 4px;
+    letter-spacing: 0.1em;
+    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .clientName {
-    font-size: 0.85rem;
-    color: #888;
+    font-size: 0.8rem;
+    color: var(--color-platinum);
+    opacity: 0.5;
 }
 
 .projectTitle {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    line-height: 1.5;
-    margin-bottom: 15px;
-    color: var(--color-text);
+    line-height: 1.4;
+    margin-bottom: 20px;
+    color: var(--color-white);
 }
 
 .projectDesc {
     font-size: 0.95rem;
-    color: var(--color-text-light);
+    color: var(--color-platinum);
     line-height: 1.8;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
+    opacity: 0.7;
 }
 
 .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
 }
 
 .tag {
-    font-size: 0.8rem;
-    color: #666;
-    background: #f5f5f5;
-    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 4px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 4px;
+}
+
+@media (max-width: 900px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .subTitle {
+        margin-left: 0;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 32px;
+    }
 }
