@@ -5,36 +5,36 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Mail, Menu } from 'lucide-react';
 import styles from './Navbar.module.css';
 
+const navItems = [
+    { id: 'top', label: 'トップ' },
+    {
+        id: 'service',
+        label: '事業内容',
+        subItems: [
+            { id: 'service', label: 'ラインナップ' },
+            { id: 'consulting', label: 'ITコンサルティング' },
+            { id: 'security', label: 'セキュリティ診断' }
+        ]
+    },
+    {
+        id: 'company',
+        label: '企業情報',
+        subItems: [
+            { id: 'company', label: '会社概要' },
+            { id: 'message', label: '代表メッセージ' },
+            { id: 'news', label: 'ニュース' }
+        ]
+    },
+    { id: 'career', label: '経歴' },
+    { id: 'projects', label: '実績紹介' },
+];
+
 export default function Navbar() {
     // const [lang, setLang] = useState<'ja' | 'en'>('ja'); // Temporarily disabled
     const [activeSection, setActiveSection] = useState('top');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
-
-    const navItems = [
-        { id: 'top', label: 'トップ' },
-        {
-            id: 'service',
-            label: '事業内容',
-            subItems: [
-                { id: 'service', label: 'ラインナップ' },
-                { id: 'consulting', label: 'ITコンサルティング' },
-                { id: 'security', label: 'セキュリティ診断' }
-            ]
-        },
-        {
-            id: 'company',
-            label: '企業情報',
-            subItems: [
-                { id: 'company', label: '会社概要' },
-                { id: 'message', label: '代表メッセージ' },
-                { id: 'news', label: 'ニュース' }
-            ]
-        },
-        { id: 'career', label: '経歴' },
-        { id: 'projects', label: '実績紹介' },
-    ];
 
     const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
         e.preventDefault();

@@ -6,7 +6,7 @@ import Projects from '@/components/Projects';
 import CompanyProfile from '@/components/CompanyProfile';
 import Contact from '@/components/Contact';
 import Career from '@/components/Career';
-import Career from '@/components/Career';
+
 
 import Mission from '@/components/Mission';
 import News from '@/components/News';
