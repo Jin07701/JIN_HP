@@ -35,7 +35,7 @@ export default function Footer() {
                         <h3 className={styles.colTitle}>関連リンク</h3>
                         <ul className={styles.linkList}>
                             <li><Link href="https://note.com/jin_ai_system/all" target="_blank">Note (公式)</Link></li>
-                            <li><Link href="#" className={styles.externalLink}>DirectConnect Portal</Link></li>
+                            <li><Link href="http://localhost:3000" target="_blank" rel="noopener noreferrer" className={styles.externalLink}>DirectConnect ポータル</Link></li>
                         </ul>
                     </div>
                 </div>

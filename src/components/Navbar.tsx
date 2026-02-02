@@ -30,7 +30,7 @@ const navItems = [
 ];
 
 export default function Navbar() {
-    // const [lang, setLang] = useState<'ja' | 'en'>('ja'); // Temporarily disabled
+    const [lang, setLang] = useState<'ja' | 'en'>('ja');
     const [activeSection, setActiveSection] = useState('top');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
@@ -138,7 +138,6 @@ export default function Navbar() {
 
                 {/* Right: CTAs */}
                 <div className={styles.rightSection}>
-                    {/* Language Toggle - Temporarily Hidden
                     <div className={styles.langToggle}>
                         <button
                             className={`${styles.langBtn} ${lang === 'en' ? styles.activeLang : ''}`}
@@ -154,7 +153,6 @@ export default function Navbar() {
                             日本語
                         </button>
                     </div>
-                    */}
                     <Link href="/contact" className={styles.contactBtn}>
                         <Mail size={18} />
                         <span>お問い合わせ</span>
@@ -216,8 +214,8 @@ export default function Navbar() {
                         </Link>
                     </li>
                     <li>
-                        <a href="#" className={styles.mobileNavLink} onClick={() => setIsMenuOpen(false)}>
-                            DirectConnect Portal
+                        <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer" className={styles.mobileNavLink} onClick={() => setIsMenuOpen(false)}>
+                            DirectConnect ポータル
                         </a>
                     </li>
                 </ul>

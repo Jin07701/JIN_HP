@@ -12,8 +12,8 @@ export default function SubpageHeader({ titleEn, titleJa, breadcrumbs }: Subpage
         <div className={styles.headerWrapper}>
             <div className={styles.headerContent}>
                 <div className={styles.titles}>
-                    <h1 className={styles.titleEn}>{titleEn}</h1>
-                    <p className={styles.titleJa}>{titleJa}</p>
+                    <h1 className={styles.titleMain}>{titleJa}</h1>
+                    <p className={styles.titleSub}>{titleEn}</p>
                 </div>
             </div>
             <div className={styles.breadcrumbs}>
