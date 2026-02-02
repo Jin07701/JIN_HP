@@ -1,4 +1,5 @@
 import Navbar from '@/components/Navbar';
+import Image from 'next/image';
 import Footer from '@/components/Footer';
 import SubpageHeader from '@/components/SubpageHeader';
 import SubNav from '@/components/SubNav';
@@ -39,7 +40,14 @@ export default function CompanyPage() {
                         </div>
                         <div className={styles.messageContent}>
                             <div className={styles.directorImage}>
-                                <img src="/images/hero-premium.png" alt="Representative" className={styles.profileImg} />
+                                <Image
+                                    src="/images/hero-premium.png"
+                                    alt="Representative"
+                                    className={styles.profileImg}
+                                    width={300}
+                                    height={300}
+                                    style={{ objectFit: 'cover' }}
+                                />
                             </div>
                             <div className={styles.messageText}>
                                 <h3 className={styles.messageTitle}>
