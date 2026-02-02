@@ -9,7 +9,7 @@ export default function Footer() {
                 {/* Top Section: Links */}
                 <div className={styles.linkSection}>
                     <div className={styles.column}>
-                        <h3 className={styles.colTitle}>事業内容（SERVICE）</h3>
+                        <h3 className={styles.colTitle}>事業内容</h3>
                         <ul className={styles.linkList}>
                             <li><Link href="/service">ラインナップ</Link></li>
                             <li><Link href="/service#consulting">ITコンサルティング</Link></li>
@@ -17,7 +17,7 @@ export default function Footer() {
                         </ul>
                     </div>
                     <div className={styles.column}>
-                        <h3 className={styles.colTitle}>企業情報（COMPANY）</h3>
+                        <h3 className={styles.colTitle}>企業情報</h3>
                         <ul className={styles.linkList}>
                             <li><Link href="/company">会社概要</Link></li>
                             <li><Link href="/company#message">代表メッセージ</Link></li>
@@ -34,7 +34,7 @@ export default function Footer() {
                     <div className={styles.column}>
                         <h3 className={styles.colTitle}>関連リンク</h3>
                         <ul className={styles.linkList}>
-                            <li><Link href="https://github.com/Start-to-End-Networks" target="_blank">GitHub Organization</Link></li>
+                            <li><Link href="https://note.com/jin_ai_system/all" target="_blank">Note (公式)</Link></li>
                             <li><Link href="#" className={styles.externalLink}>DirectConnect Portal</Link></li>
                         </ul>
                     </div>

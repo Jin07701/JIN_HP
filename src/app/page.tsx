@@ -5,6 +5,11 @@ import Lineup from '@/components/Lineup';
 import Projects from '@/components/Projects';
 import CompanyProfile from '@/components/CompanyProfile';
 import Contact from '@/components/Contact';
+import Career from '@/components/Career';
+import Career from '@/components/Career';
+
+import Mission from '@/components/Mission';
+import News from '@/components/News';
 
 export default function Home() {
   return (
@@ -12,9 +17,12 @@ export default function Home() {
       <Navbar />
       <main style={{ paddingTop: '80px' }}> {/* Add padding for fixed navbar */}
         <Hero />
+        <Mission />
         <Lineup />
-        <Projects />
         <CompanyProfile />
+        <Career />
+        <Projects />
+        <News />
         <Contact />
       </main>
       <Footer />

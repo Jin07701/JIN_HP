@@ -34,11 +34,10 @@ const lineupItems = [
 
 export default function Lineup() {
     return (
-        <section className={styles.section}>
+        <section className={styles.section} id="service">
             <div className={styles.container}>
                 <div className={styles.header}>
                     <h2 className={styles.title}>サービス一覧</h2>
-                    <p className={styles.subTitle}>Service Lineup</p>
                 </div>
 
                 <div className={styles.grid}>

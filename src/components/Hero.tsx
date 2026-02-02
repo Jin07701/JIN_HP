@@ -3,7 +3,7 @@ import styles from './Hero.module.css';
 
 export default function Hero() {
     return (
-        <section className={styles.hero}>
+        <section className={styles.hero} id="top">
             <div className={styles.content}>
                 <h1 className={styles.headline}>
                     <span className={styles.gradientText}>卓越したエンジニアと、</span><br />
@@ -15,10 +15,10 @@ export default function Hero() {
                 </p>
                 <div className={styles.ctaContainer}>
                     <Link href="/contact" className={styles.primaryButton}>
-                        PROJECT START
+                        お問い合わせ
                     </Link>
                     <Link href="/service" className={styles.secondaryButton}>
-                        OUR SERVICE
+                        サービスを見る
                     </Link>
                 </div>
                 <div className={styles.scrollDown}>SCROLL</div>

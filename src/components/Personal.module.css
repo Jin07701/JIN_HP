@@ -1,0 +1,201 @@
+.section {
+    padding: 100px 20px;
+    background-color: #f8fafc;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.heading {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1e293b;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+}
+
+.subHeading {
+    font-size: 1rem;
+    color: #64748b;
+    font-weight: 500;
+    display: block;
+}
+
+.noteSection {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 80px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+}
+
+.noteText {
+    font-size: 1.1rem;
+    color: #334155;
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+.noteButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #2cb696;
+    /* Note branding color roughly */
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.noteButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(44, 182, 150, 0.3);
+}
+
+.categoryBlock {
+    margin-bottom: 60px;
+}
+
+.mainTitle {
+    font-size: 1.5rem;
+    /* Slightly smaller than main section header */
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 25px;
+    padding-left: 15px;
+    border-left: 5px solid #fbbf24;
+}
+
+.intro {
+    margin-bottom: 40px;
+    color: #4b5563;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: #f9fafb;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.icon {
+    color: #fbbf24;
+}
+
+.cardTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.list {
+    list-style: disk;
+    padding-left: 20px;
+    color: #4b5563;
+    line-height: 1.8;
+}
+
+.list li {
+    margin-bottom: 8px;
+}
+
+/* LIKE Section */
+.likeTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2563eb;
+    /* Blue based on image text color */
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 10px;
+}
+
+.likeGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.likeCard {
+    background-color: #ecfdf5;
+    /* Light greenish/blueish tint */
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.likeCard:nth-child(2) {
+    background-color: #f0f9ff;
+}
+
+.likeCard:nth-child(3) {
+    background-color: #f0fdf4;
+}
+
+.likeCard:nth-child(4) {
+    background-color: #fff7ed;
+}
+
+/* Just creating slight variety or keeping uniform based on preference. 
+   Image shows unified light background. Let's stick to a uniform soft background. */
+.likeCard {
+    background-color: #f1f5f9;
+    /* Slate 100 */
+}
+
+
+.likeHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.likeIcon {
+    color: #6b7280;
+}
+
+.likeHeading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #374151;
+}
+
+.likeText {
+    color: #4b5563;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    padding-left: 30px;
+    /* Align with text start */
+}
