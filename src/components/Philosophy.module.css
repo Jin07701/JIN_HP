@@ -78,7 +78,8 @@
 .cardHeader {
     font-size: 3rem;
     font-weight: 900;
-    color: var(--color-bg-subtle);
+    color: #e2e8f0;
+    /* Darker than previous extremely light gray */
     line-height: 1;
     margin-bottom: 20px;
 }
@@ -93,4 +94,12 @@
     color: var(--color-text-light);
     line-height: 1.8;
     font-size: 0.95rem;
+}
+
+.cardSubTitle {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    font-weight: 400;
+    margin-top: 5px;
 }

@@ -8,7 +8,7 @@ const projectData = [
     {
         id: 1,
         image: '/images/direct-connect-showcase.png',
-        category: 'Security / Infra',
+        category: 'セキュリティ / インフラ',
         client: '外資通販会社・他',
         title: '脆弱性対応・セキュリティ自動化',
         desc: '脆弱性検知数が1000件を超える状態から、対応フロー整備とパッチ適用自動化（PowerShell/Ansible）を導入。週次定例でのアクション明確化により、600件以上を解消し、Japanチームのセキュリティレベル向上に貢献。',
@@ -60,7 +60,7 @@ const projectData = [
     {
         id: 2,
         image: '/images/direct-connect-match.png',
-        category: 'PM / Consulting',
+        category: 'PM / コンサルティング',
         client: '自動車関連・医療機関',
         title: '大規模システム更新・PJ推進',
         desc: '次期システム更新PJにて、チーム間の連携停滞を解消するため、意思決定フローを可視化しファシリテーションを実施。「何をいつまでに決めるか」を明示し、対立構造を解消して計画通りのシステム稼働を実現。',
@@ -116,7 +116,7 @@ const projectData = [
     {
         id: 3,
         image: '/images/company-profile-concept.jpg',
-        category: 'Efficiency / Audit',
+        category: '業務効率化 / 監査',
         client: '金融機関・銀行',
         title: '監査対応・業務プロセス改善',
         desc: '3ヶ月に1度20時間を要していた監査対応作業に対し、根本的な業務プロセスの見直しを実施。関係者調整の上で代替案を提示し、当該作業をゼロベースで削減。業務効率とガバナンスの両立を達成。',
@@ -125,7 +125,7 @@ const projectData = [
     {
         id: 4,
         image: '/images/company-profile-concept.jpg',
-        category: 'Infra / Server',
+        category: 'インフラ / サーバー',
         client: '金融機関・証券会社',
         title: '金融系サーバ設計・構築・保守',
         desc: '銀行や証券システムのサーバ設計・構築から保守運用までを担当。自動化ツール（Ansible）を用いた構築や、VBAによる業務効率化ツール作成、脆弱性調査など、インフラエンジニアとして幅広い業務に従事。',

@@ -15,7 +15,6 @@ export default function CompanyPage() {
         { label: 'Message', href: '#message' },
         { label: 'Outline', href: '#outline' },
         { label: 'FAQ', href: '#faq' },
-        { label: 'Access', href: '#access' },
     ];
 
     return (
@@ -78,28 +77,7 @@ export default function CompanyPage() {
 
                 <FAQ />
 
-                <section id="access" className={styles.section}>
-                    <div className={styles.container}>
-                        <div className={styles.header}>
-                            <h2 className={styles.title}>ACCESS</h2>
-                            <p className={styles.subTitle}>アクセス</p>
-                        </div>
-                        <div className={styles.accessContent}>
-                            <div className={styles.address}>
-                                <h3>本社所在地</h3>
-                                <p>
-                                    〒812-0011<br />
-                                    福岡県福岡市博多区博多駅前1-23-4<br />
-                                    博多駅前ビル 5F
-                                </p>
-                                <div className={styles.accessMap}>
-                                    {/* Simple map placeholder or iframe */}
-                                    <div className={styles.mapPlaceholder}>Google Map Area</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+
 
             </main>
             <Footer />
