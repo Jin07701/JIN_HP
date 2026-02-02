@@ -3,38 +3,41 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Mail, Menu } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 import styles from './Navbar.module.css';
 
-const navItems = [
-    { id: 'top', label: 'トップ' },
-    {
-        id: 'service',
-        label: '事業内容',
-        subItems: [
-            { id: 'service', label: 'ラインナップ' },
-            { id: 'consulting', label: 'ITコンサルティング' },
-            { id: 'security', label: 'セキュリティ診断' }
-        ]
-    },
-    {
-        id: 'company',
-        label: '企業情報',
-        subItems: [
-            { id: 'company', label: '会社概要' },
-            { id: 'message', label: '代表メッセージ' },
-            { id: 'news', label: 'ニュース' }
-        ]
-    },
-    { id: 'career', label: '経歴' },
-    { id: 'projects', label: '実績紹介' },
-];
+
 
 export default function Navbar() {
-    const [lang, setLang] = useState<'ja' | 'en'>('ja');
+    const { language, setLanguage, t } = useLanguage();
     const [activeSection, setActiveSection] = useState('top');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
+
+    const navItems = [
+        { id: 'top', label: t('トップ', 'Top') },
+        {
+            id: 'service',
+            label: t('事業内容', 'Service'),
+            subItems: [
+                { id: 'service', label: t('ラインナップ', 'Lineup') },
+                { id: 'consulting', label: t('ITコンサルティング', 'IT Consulting') },
+                { id: 'security', label: t('セキュリティ診断', 'Security') }
+            ]
+        },
+        {
+            id: 'company',
+            label: t('企業情報', 'Company'),
+            subItems: [
+                { id: 'company', label: t('会社概要', 'About Us') },
+                { id: 'message', label: t('代表メッセージ', 'Message') },
+                { id: 'news', label: t('ニュース', 'News') }
+            ]
+        },
+        { id: 'career', label: t('経歴', 'Career') },
+        { id: 'projects', label: t('実績紹介', 'Projects') },
+    ];
 
     const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
         e.preventDefault();
@@ -94,7 +97,7 @@ export default function Navbar() {
         });
 
         return () => observer.disconnect();
-    }, [pathname]);
+    }, [pathname, navItems]); // Dependent on navItems now as it recreates
 
     return (
         <nav className={styles.navbar}>
@@ -140,22 +143,22 @@ export default function Navbar() {
                 <div className={styles.rightSection}>
                     <div className={styles.langToggle}>
                         <button
-                            className={`${styles.langBtn} ${lang === 'en' ? styles.activeLang : ''}`}
-                            onClick={() => setLang('en')}
+                            className={`${styles.langBtn} ${language === 'en' ? styles.activeLang : ''}`}
+                            onClick={() => setLanguage('en')}
                         >
                             English
                         </button>
                         <span className={styles.langSeparator}>/</span>
                         <button
-                            className={`${styles.langBtn} ${lang === 'ja' ? styles.activeLang : ''}`}
-                            onClick={() => setLang('ja')}
+                            className={`${styles.langBtn} ${language === 'ja' ? styles.activeLang : ''}`}
+                            onClick={() => setLanguage('ja')}
                         >
                             日本語
                         </button>
                     </div>
                     <Link href="/contact" className={styles.contactBtn}>
                         <Mail size={18} />
-                        <span>お問い合わせ</span>
+                        <span>{t('お問い合わせ', 'Contact')}</span>
                     </Link>
                     <button
                         className={styles.menuBtn}
@@ -198,26 +201,22 @@ export default function Navbar() {
                     ))}
                     <li>
                         <Link href="/contact" className={styles.mobileNavLink} onClick={() => setIsMenuOpen(false)}>
-                            お問い合わせ
+                            {t('お問い合わせ', 'Contact')}
                         </Link>
                     </li>
                     <li className={styles.mobileDivider}></li>
                     <li>
                         <Link href="/contact#faq" className={styles.mobileSubLink} onClick={() => { setIsMenuOpen(false); }}>
-                            よくあるご質問
+                            {t('よくあるご質問', 'FAQ')}
                         </Link>
                     </li>
                     <li className={styles.mobileDivider}></li>
                     <li>
                         <Link href="/profile" className={styles.mobileNavLink} onClick={() => setIsMenuOpen(false)}>
-                            人物紹介
+                            {t('人物紹介', 'Profile')}
                         </Link>
                     </li>
-                    <li>
-                        <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer" className={styles.mobileNavLink} onClick={() => setIsMenuOpen(false)}>
-                            DirectConnect ポータル
-                        </a>
-                    </li>
+
                 </ul>
             </div>
         </nav>

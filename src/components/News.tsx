@@ -1,14 +1,18 @@
+"use client";
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 import styles from './News.module.css';
 
 export default function News() {
+    const { t } = useLanguage();
+
     // Single news item as requested, linking to Note
     const newsItems = [
         {
             date: '2026.04.01',
-            category: 'お知らせ',
-            title: '合同会社KANAMEを設立しました',
+            category: t('お知らせ', 'Notice'),
+            title: t('合同会社KANAMEを設立しました', 'Established KANAME LLC'),
             url: 'https://note.com/jin_ai_system/all' // Link to Note
         }
     ];
@@ -17,9 +21,9 @@ export default function News() {
         <section className={styles.section} id="news">
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <h2 className={styles.heading}>お知らせ</h2>
+                    <h2 className={styles.heading}>{t('お知らせ', 'News')}</h2>
                     <a href="https://note.com/jin_ai_system/all" target="_blank" rel="noopener noreferrer" className={styles.viewAll}>
-                        Noteを見る <ChevronRight size={16} />
+                        {t('Noteを見る', 'View Note')} <ChevronRight size={16} />
                     </a>
                 </div>
 

@@ -2,28 +2,42 @@
 import { useState } from 'react';
 import styles from './FAQ.module.css';
 import { Plus, Minus } from 'lucide-react';
-
-const faqData = [
-    {
-        q: 'どのような契約形態になりますか？',
-        a: '基本的には準委任契約となりますが、プロジェクトの性質に応じて請負契約も可能です。柔軟に対応させていただきます。'
-    },
-    {
-        q: 'エンジニアの稼働までどのくらいの期間がかかりますか？',
-        a: '最短で3営業日以内のアサイン実績がございます。通常は1〜2週間程度でご提案から稼働開始まで進むケースが多いです。'
-    },
-    {
-        q: '未経験エンジニアの採用は行っていますか？',
-        a: '現在は即戦力となる実務経験者をメインに採用しておりますが、ポテンシャル採用も一部行っております。採用情報ページをご確認ください。'
-    },
-    {
-        q: 'リモートワークは可能ですか？',
-        a: 'はい、多くのプロジェクトでフルリモートまたはハイブリッドワークを導入しております。働き方の柔軟性を重視しています。'
-    }
-];
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function FAQ() {
+    const { t } = useLanguage();
     const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+    const faqData = [
+        {
+            q: t('どのような契約形態になりますか？', 'What type of contract is available?'),
+            a: t(
+                '基本的には準委任契約となりますが、プロジェクトの性質に応じて請負契約も可能です。柔軟に対応させていただきます。',
+                'Basically, it is a quasi-mandate contract, but contract agreements are also possible depending on the nature of the project. We will respond flexibly.'
+            )
+        },
+        {
+            q: t('エンジニアの稼働までどのくらいの期間がかかりますか？', 'How long does it take for an engineer to start working?'),
+            a: t(
+                '最短で3営業日以内のアサイン実績がございます。通常は1〜2週間程度でご提案から稼働開始まで進むケースが多いです。',
+                'We have a track record of assignment within 3 business days at the shortest. Usually, it takes about 1 to 2 weeks from proposal to start of work.'
+            )
+        },
+        {
+            q: t('未経験エンジニアの採用は行っていますか？', 'Do you recruit inexperienced engineers?'),
+            a: t(
+                '現在は即戦力となる実務経験者をメインに採用しておりますが、ポテンシャル採用も一部行っております。採用情報ページをご確認ください。',
+                'Currently, we mainly recruit experienced candidates who can be immediate assets, but we also do some potential hiring. Please check the recruitment information page.'
+            )
+        },
+        {
+            q: t('リモートワークは可能ですか？', 'Is remote work possible?'),
+            a: t(
+                'はい、多くのプロジェクトでフルリモートまたはハイブリッドワークを導入しております。働き方の柔軟性を重視しています。',
+                'Yes, many projects have introduced full remote or hybrid work. We emphasize flexibility in work styles.'
+            )
+        }
+    ];
 
     const toggleAccordion = (index: number) => {
         setOpenIndex(openIndex === index ? null : index);
@@ -34,7 +48,7 @@ export default function FAQ() {
             <div className={styles.container}>
                 <div className={styles.header}>
                     <h2 className={styles.title}>FAQ</h2>
-                    <p className={styles.subTitle}>よくあるご質問</p>
+                    <p className={styles.subTitle}>{t('よくあるご質問', 'Frequently Asked Questions')}</p>
                 </div>
 
                 <div className={styles.list}>
