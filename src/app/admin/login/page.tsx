@@ -16,7 +16,7 @@ export default function LoginPage() {
                 } else {
                     // Wrong user, sign out
                     supabase.auth.signOut();
-                    alert('アクセス権限がありません。jinadachi077@gmail.comのアカウントのみ許可されています。');
+                    alert('アクセス権限がありません。管理者アカウントでのみ許可されています。');
                 }
             }
             setLoading(false);
@@ -42,7 +42,7 @@ export default function LoginPage() {
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f5f5f5' }}>
             <div style={{ padding: '40px', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', textAlign: 'center' }}>
                 <h1 style={{ marginBottom: '20px', fontSize: '24px', fontWeight: 'bold' }}>管理者ログイン</h1>
-                <p style={{ marginBottom: '30px', color: '#666' }}>jinadachi077@gmail.com のGoogleアカウントでのみアクセス可能です。</p>
+                <p style={{ marginBottom: '30px', color: '#666' }}>許可された管理者アカウントでのみアクセス可能です。</p>
                 <button 
                     onClick={handleGoogleLogin}
                     style={{
