@@ -10,8 +10,8 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "KANAME | AI-Driven Intelligent Matching",
-  description: "KANAME Corporate Website - DirectConnect Operation",
+  title: "ARISTA | AI-Driven Intelligent Matching",
+  description: "ARISTA Corporate Website - ITダイレクトマッチA Operation",
 };
 
 export default function RootLayout({

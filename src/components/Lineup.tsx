@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import { Network, Shield, Cpu } from 'lucide-react';
+import { Network, Shield, Cpu, Smartphone } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Lineup.module.css';
 
@@ -10,7 +10,7 @@ export default function Lineup() {
     const lineupItems = [
         {
             id: 'connect',
-            title: 'DirectConnect',
+            title: 'ITダイレクトマッチA',
             subtitle: t('エンジニア・企業マッチング', 'Engineer & Company Matching'),
             description: t(
                 '中間マージンを排除した、透明性の高いダイレクトマッチングプラットフォーム。',
@@ -43,6 +43,18 @@ export default function Lineup() {
             icon: <Shield size={40} />,
             link: '/service#security',
             image: '/images/company-profile-concept.jpg'
+        },
+        {
+            id: 'app',
+            title: 'App Development',
+            subtitle: t('アプリ開発', 'App Development'),
+            description: t(
+                '「おしゃべりスイッチ」や「娯楽ブレーキ」などのiOS向け自社アプリ開発・提供。',
+                'In-house iOS app development such as "Oshaberi Switch" and "Goraku Brake".'
+            ),
+            icon: <Smartphone size={40} />,
+            link: '/service#app',
+            image: ''
         }
     ];
 

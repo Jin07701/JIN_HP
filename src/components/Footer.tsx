@@ -47,7 +47,7 @@ export default function Footer() {
                 <div className={styles.bottomSection}>
                     <div className={styles.brand}>
                         <Link href="/" className={styles.logo}>
-                            KANAME<span className={styles.tagline}>AI-Driven Intelligent Matching</span>
+                            ARISTA<span className={styles.tagline}>AI-Driven Intelligent Matching</span>
                         </Link>
                         <div className={styles.socials}>
                             <Link href="#" aria-label="Facebook"><Facebook size={20} /></Link>
@@ -57,7 +57,7 @@ export default function Footer() {
                         </div>
                     </div>
                     <div className={styles.copyright}>
-                        &copy; {new Date().getFullYear()} KANAME. All rights reserved.
+                        &copy; {new Date().getFullYear()} ARISTA. All rights reserved.
                     </div>
                 </div>
             </div>

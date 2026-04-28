@@ -16,10 +16,10 @@ export default function Service() {
                 </div>
 
                 <div className={styles.grid}>
-                    {/* Main Feature: DirectConnect */}
+                    {/* Main Feature: ITダイレクトマッチA */}
                     <div className={styles.mainCard}>
                         <div className={styles.cardContent}>
-                            <h3 className={styles.serviceTitle}>DirectConnect</h3>
+                            <h3 className={styles.serviceTitle}>ITダイレクトマッチA</h3>
                             <p className={styles.serviceSubtitle}>
                                 {t('エンジニアと企業を、直接つなぐ。', 'Connecting Engineers and Companies Directly.')}<br />
                                 {t('新時代のマッチングプラットフォーム。', 'A New Era Matching Platform.')}
@@ -40,8 +40,8 @@ export default function Service() {
                             </div>
                             <p className={styles.description}>
                                 {t(
-                                    'DirectConnectは、従来のSESやフリーランス市場の課題を解決し、透明性が高く、効率的なITプロフェッショナルのためのエコシステムを提供します。',
-                                    'DirectConnect solves the challenges of traditional SES and freelance markets, providing a highly transparent and efficient ecosystem for IT professionals.'
+                                    'ITダイレクトマッチAは、従来のSESやフリーランス市場の課題を解決し、透明性が高く、効率的なITプロフェッショナルのためのエコシステムを提供します。',
+                                    'IT Direct Match A solves the challenges of traditional SES and freelance markets, providing a highly transparent and efficient ecosystem for IT professionals.'
                                 )}
                             </p>
                             <Link href="http://localhost:3001" className={styles.linkBtn} target="_blank" rel="noopener noreferrer">
@@ -52,7 +52,7 @@ export default function Service() {
                             {/* Actual Platform Screenshot */}
                             <img
                                 src="/images/direct-connect-match.png"
-                                alt="DirectConnect Matching Concept"
+                                alt="ITダイレクトマッチA Matching Concept"
                                 className={styles.platformImage}
                             />
                         </div>

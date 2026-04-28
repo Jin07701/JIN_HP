@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const puppeteer = require('puppeteer');
-const fs = require('fs');
 const path = require('path');
 
 const BASE_URL = 'http://localhost:3000';

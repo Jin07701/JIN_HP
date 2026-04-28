@@ -15,8 +15,8 @@ export default function Hero() {
                 </h1>
                 <p className={styles.subHeadline}>
                     {t(
-                        'KANAMEは、頂点を極めるテクノロジーで世界を再定義し、',
-                        'KANAME redefines the world with peak technology,'
+                        'ARISTAは、頂点を極めるテクノロジーで世界を再定義し、',
+                        'ARISTA redefines the world with peak technology,'
                     )}<br />
                     {t(
                         '選ばれしエンジニアと企業が共鳴する、新たな頂を目指します。',

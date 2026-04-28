@@ -19,7 +19,7 @@ export default function SecurityPage() {
                 <div className={styles.container}>
                     <div className={styles.content}>
                         <p className={styles.preamble}>
-                            合同会社EnLink（以下、「当社」）は、お客様からお預かりした情報資産を事故・災害・犯罪などの脅威から守り、お客様ならびに社会の信頼に応えるべく、以下の方針に基づき全社で情報セキュリティに取り組みます。
+                            株式会社ARISTA（以下、「当社」）は、お客様からお預かりした情報資産を事故・災害・犯罪などの脅威から守り、お客様ならびに社会の信頼に応えるべく、以下の方針に基づき全社で情報セキュリティに取り組みます。
                         </p>
 
                         <div className={styles.section}>
@@ -49,8 +49,8 @@ export default function SecurityPage() {
 
                         <div className={styles.date}>
                             制定日: 2026年1月21日<br />
-                            合同会社EnLink<br />
-                            代表 Jin
+                            株式会社ARISTA<br />
+                            代表 Jin Adaschi
                         </div>
                     </div>
                 </div>

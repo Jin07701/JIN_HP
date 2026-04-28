@@ -23,8 +23,8 @@ export default function Mission() {
                                 'Technology never stops evolving, and the world is changing every day.'
                             )}<br />
                             {t(
-                                'KANAMEは、卓越した技術力を持つエンジニアとビジョンを持つ企業を繋ぎ、',
-                                'KANAME connects engineers with outstanding technical skills to visionary companies,'
+                                'ARISTAは、卓越した技術力を持つエンジニアとビジョンを持つ企業を繋ぎ、',
+                                'ARISTA connects engineers with outstanding technical skills to visionary companies,'
                             )}<br />
                             {t(
                                 '単なるマッチングを超えた「共鳴」を生み出します。',

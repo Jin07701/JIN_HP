@@ -4,7 +4,7 @@ import SubpageHeader from '@/components/SubpageHeader';
 import styles from './page.module.css';
 
 const newsItems = [
-    { id: 1, date: '2026.04.01', category: 'お知らせ', title: '合同会社KANAMEを設立しました', link: 'https://note.com/jin_ai_system/all' },
+    { id: 1, date: '2026.04.01', category: 'お知らせ', title: '株式会社ARISTAを設立しました', link: 'https://note.com/jin_ai_system/all' },
 ];
 
 export default function NewsPage() {

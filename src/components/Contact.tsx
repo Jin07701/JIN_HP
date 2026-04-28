@@ -119,7 +119,9 @@ export default function Contact() {
                                     onChange={handleChange}
                                 ></textarea>
                             </div>
-                            <button type="submit" className={styles.submitBtn}>{t('送信する', 'Send Message')}</button>
+                            <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
+                                {isSubmitting ? t('送信中...', 'Sending...') : t('送信する', 'Send Message')}
+                            </button>
                         </form>
                     )}
                 </div>

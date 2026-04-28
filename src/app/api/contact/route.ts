@@ -5,7 +5,7 @@ const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 const MAX_REQUESTS_PER_WINDOW = 3;
 const ipRequestMap = new Map<string, { count: number, lastRequest: number }>();
 
-function cleanInput(str: any): string {
+function cleanInput(str: unknown): string {
     if (typeof str !== 'string') return '';
     // Basic sanitization: remove HTML tags to prevent XSS
     return str.replace(/<[^>]*>?/gm, '');

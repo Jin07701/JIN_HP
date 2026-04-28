@@ -1,5 +1,5 @@
 "use client";
-import Link from 'next/link';
+
 import { MapPin, Briefcase, BookOpen, MessageCircle, Dumbbell, Search, Film, PenTool } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Personal.module.css';

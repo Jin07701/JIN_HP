@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SubpageHeader from '@/components/SubpageHeader';
 import styles from './page.module.css';
-import { Network, Shield, Cpu } from 'lucide-react';
+import { Network, Shield, Cpu, Smartphone, ExternalLink } from 'lucide-react';
 
 export default function ServicePage() {
     const breadcrumbs = [{ label: '事業内容', href: '' }];
@@ -21,7 +21,7 @@ export default function ServicePage() {
                     <section id="connect" className={styles.serviceSection}>
                         <div className={styles.textCol}>
                             <div className={styles.iconWrapper}><Network size={40} /></div>
-                            <h2 className={styles.serviceTitle}>DirectConnect</h2>
+                            <h2 className={styles.serviceTitle}>ITダイレクトマッチA</h2>
                             <p className={styles.serviceSubtitle}>エンジニア・企業マッチングプラットフォーム</p>
                             <p className={styles.description}>
                                 従来のエージェントモデルとは異なり、企業とエンジニアを直接つなぐ「ダイレクトマッチング」を実現。<br />
@@ -47,7 +47,7 @@ export default function ServicePage() {
                             </div>
                         </div>
                         <div className={styles.imageCol}>
-                            <img src="/images/direct-connect-match.png" alt="DirectConnect" className={styles.serviceImage} />
+                            <img src="/images/direct-connect-match.png" alt="ITダイレクトマッチA" className={styles.serviceImage} />
                         </div>
                     </section>
 
@@ -78,6 +78,51 @@ export default function ServicePage() {
                         </div>
                         <div className={styles.imageCol}>
                             <img src="/images/company-profile-concept.jpg" alt="Security" className={styles.serviceImage} />
+                        </div>
+                    </section>
+
+                    <section id="app" className={styles.serviceSection}>
+                        <div className={styles.textCol}>
+                            <div className={styles.iconWrapper}><Smartphone size={40} /></div>
+                            <h2 className={styles.serviceTitle}>App Development</h2>
+                            <p className={styles.serviceSubtitle}>自社アプリ開発・提供</p>
+                            <p className={styles.description}>
+                                日常生活をより豊かに、そして面白くするiOS向け自社アプリを企画・開発しています。<br />
+                                ユーザー視点に立ったUI/UX設計と、最新の技術トレンドを取り入れた開発を行っています。
+                            </p>
+                            <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                <a href="https://apps.apple.com/jp/app/おしゃべりスイッチ/id6761762103" target="_blank" rel="noopener noreferrer" style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                    backgroundColor: '#000',
+                                    color: 'white',
+                                    padding: '0.75rem 1.5rem',
+                                    borderRadius: '8px',
+                                    fontWeight: 'bold',
+                                    textDecoration: 'none',
+                                    width: 'fit-content'
+                                }}>
+                                    おしゃべりスイッチ <ExternalLink size={16} />
+                                </a>
+                                <a href="https://apps.apple.com/jp/app/娯楽ブレーキ/id6761870163" target="_blank" rel="noopener noreferrer" style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                    backgroundColor: '#000',
+                                    color: 'white',
+                                    padding: '0.75rem 1.5rem',
+                                    borderRadius: '8px',
+                                    fontWeight: 'bold',
+                                    textDecoration: 'none',
+                                    width: 'fit-content'
+                                }}>
+                                    娯楽ブレーキ <ExternalLink size={16} />
+                                </a>
+                            </div>
+                        </div>
+                        <div className={styles.imageCol}>
+                            <div className={styles.placeholderImg}>App Development Images</div>
                         </div>
                     </section>
                 </div>

@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Mail, Menu } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
@@ -15,7 +15,7 @@ export default function Navbar() {
     const pathname = usePathname();
     const router = useRouter();
 
-    const navItems = [
+    const navItems = useMemo(() => [
         { id: 'top', label: t('トップ', 'Top') },
         {
             id: 'service',
@@ -37,7 +37,7 @@ export default function Navbar() {
         },
         { id: 'career', label: t('経歴', 'Career') },
         { id: 'projects', label: t('実績紹介', 'Projects') },
-    ];
+    ], [t]);
 
     const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
         e.preventDefault();
@@ -67,7 +67,7 @@ export default function Navbar() {
     useEffect(() => {
         // If we are on /projects, set active to 'projects'
         if (pathname.includes('/projects')) {
-            setActiveSection('projects');
+            setActiveSection('projects'); // eslint-disable-line
             return;
         }
 
@@ -117,7 +117,7 @@ export default function Navbar() {
                         }}
                     >
                         <div className={styles.logoText}>
-                            KANAME
+                            ARISTA
                         </div>
                     </Link>
                 </div>

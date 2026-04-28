@@ -1,5 +1,5 @@
 "use client";
-import Link from 'next/link';
+
 import { ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './News.module.css';
@@ -12,7 +12,7 @@ export default function News() {
         {
             date: '2026.04.01',
             category: t('お知らせ', 'Notice'),
-            title: t('合同会社KANAMEを設立しました', 'Established KANAME LLC'),
+            title: t('株式会社ARISTAを設立しました', 'Established ARISTA Inc.'),
             url: 'https://note.com/jin_ai_system/all' // Link to Note
         }
     ];
