@@ -15,7 +15,7 @@ INSERT INTO public.site_settings (setting_key, setting_value, description) VALUE
 ('hero_bg_image', '/images/hero-bg.jpg', 'Hero Background Image URL'),
 ('company_name', '株式会社ARISTA（アリスタ）', 'Company Name'),
 ('company_established', '2026年5月', 'Established Date'),
-('company_representative', 'Jin Adaschi', 'Representative Name'),
+('company_representative', 'Jin Adachi', 'Representative Name'),
 ('company_address', '〒810-0001 福岡県福岡市中央区天神2丁目2番12号T&Jビルディング7F', 'Company Address'),
 ('company_message', '私たちは、最先端のAI技術と独自のアルゴリズムを活用し、企業とエンジニアの最適なマッチングを実現します。単なるスキルマッチングにとどまらず、ビジョンやカルチャーの適合性を深く分析することで、双方が真に共鳴し、共に成長できる環境を創出します。', 'Company Message Text'),
 ('company_message_image', '/images/company-message.jpg', 'Company Message Image URL'),

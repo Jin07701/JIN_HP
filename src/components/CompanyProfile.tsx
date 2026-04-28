@@ -40,7 +40,7 @@ export default function CompanyProfile({ settings }: { settings?: Record<string,
                         </div>
                         <div className={styles.row}>
                             <dt>{t('代表者', 'Representative')}</dt>
-                            <dd>{settings?.company_representative || 'Jin Adaschi'}</dd>
+                            <dd>{settings?.company_representative || 'Jin Adachi'}</dd>
                         </div>
                         <div className={styles.row}>
                             <dt>{t('所在地', 'Location')}</dt>
@@ -49,7 +49,7 @@ export default function CompanyProfile({ settings }: { settings?: Record<string,
                         <div className={styles.row}>
                             <dt>{t('事業内容', 'Business Activities')}</dt>
                             <dd>
-                                {t('・エンジニアマッチングプラットフォーム「ITダイレクトマッチA」の運営', '・Operation of Engineer Matching Platform "IT Direct Match A"')}<br />
+                                {t('・エンジニアマッチングプラットフォーム「ITダイレクトマッチ」の運営', '・Operation of Engineer Matching Platform "IT Direct Match"')}<br />
                                 {t('・アプリ開発事業', '・App Development Business')}<br />
                                 {t('・ITコンサルティング事業', '・IT Consulting Business')}<br />
                                 {t('・セキュリティ監査・診断事業', '・Security Audit & Assessment Business')}
