@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import { Facebook, Twitter, Youtube, Instagram } from 'lucide-react';
+
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Footer.module.css';
 
@@ -36,9 +36,10 @@ export default function Footer() {
                         </ul>
                     </div>
                     <div className={styles.column}>
-                        <h3 className={styles.colTitle}>{t('関連リンク', 'Links')}</h3>
+                        <h3 className={styles.colTitle}>{t('関連リンク', 'Related Links')}</h3>
                         <ul className={styles.linkList}>
-                            <li><Link href="https://note.com/jin_ai_system/all" target="_blank">Note {t('(公式)', '(Official)')}</Link></li>
+                            <li><a href="https://note.com/jin_ai_system/all" target="_blank" rel="noopener noreferrer">Note (公式)</a></li>
+                            <li><Link href="/admin">{t('管理者ログイン', 'Admin Login')}</Link></li>
                         </ul>
                     </div>
                 </div>
@@ -47,14 +48,8 @@ export default function Footer() {
                 <div className={styles.bottomSection}>
                     <div className={styles.brand}>
                         <Link href="/" className={styles.logo}>
-                            ARISTA<span className={styles.tagline}>AI-Driven Intelligent Matching</span>
+                            {t('株式会社ARISTA', 'ARISTA Inc.')}<span className={styles.tagline}>AI-Driven Intelligent Matching</span>
                         </Link>
-                        <div className={styles.socials}>
-                            <Link href="#" aria-label="Facebook"><Facebook size={20} /></Link>
-                            <Link href="#" aria-label="Twitter"><Twitter size={20} /></Link>
-                            <Link href="#" aria-label="YouTube"><Youtube size={20} /></Link>
-                            <Link href="#" aria-label="Instagram"><Instagram size={20} /></Link>
-                        </div>
                     </div>
                     <div className={styles.copyright}>
                         &copy; {new Date().getFullYear()} ARISTA. All rights reserved.
@@ -62,9 +57,14 @@ export default function Footer() {
                 </div>
             </div>
 
-            {/* Back to Top Button style placeholder (often fixed) */}
+            {/* Back to Top Button */}
             <div className={styles.backToTop}>
-                <Link href="#">{t('ページトップへ', 'Back to Top')}</Link>
+                <button 
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    style={{ background: 'none', border: 'none', color: 'inherit', font: 'inherit', cursor: 'pointer', padding: 0 }}
+                >
+                    {t('ページトップへ', 'Back to Top')}
+                </button>
             </div>
         </footer>
     );

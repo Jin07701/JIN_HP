@@ -110,7 +110,8 @@
     font-weight: 700;
 }
 
-.backToTop a {
+.backToTop a,
+.backToTop button {
     color: #FFFFFF;
     background-color: var(--color-secondary);
     padding: 10px 20px;

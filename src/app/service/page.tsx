@@ -122,7 +122,7 @@ export default function ServicePage() {
                             </div>
                         </div>
                         <div className={styles.imageCol}>
-                            <div className={styles.placeholderImg}>App Development Images</div>
+                            <img src="/images/app-development.png" alt="App Development" className={styles.serviceImage} style={{ borderRadius: '12px' }} />
                         </div>
                     </section>
                 </div>

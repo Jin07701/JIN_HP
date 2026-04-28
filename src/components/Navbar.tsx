@@ -117,7 +117,7 @@ export default function Navbar() {
                         }}
                     >
                         <div className={styles.logoText}>
-                            ARISTA
+                            ARISTA<span style={{ fontSize: '0.45em', marginLeft: '8px', letterSpacing: '0.05em', opacity: 0.8, fontWeight: 500 }}>アリスタ</span>
                         </div>
                     </Link>
                 </div>
@@ -156,9 +156,8 @@ export default function Navbar() {
                             日本語
                         </button>
                     </div>
-                    <Link href="/contact" className={styles.contactBtn}>
-                        <Mail size={18} />
-                        <span>{t('お問い合わせ', 'Contact')}</span>
+                    <Link href="/contact" className={styles.contactBtn} aria-label={t('お問い合わせ', 'Contact')}>
+                        <Mail size={22} />
                     </Link>
                     <button
                         className={styles.menuBtn}

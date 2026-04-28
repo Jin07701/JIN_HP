@@ -10,16 +10,33 @@ import Career from '@/components/Career';
 
 import Mission from '@/components/Mission';
 import News from '@/components/News';
+import { supabase } from '@/lib/supabase';
 
-export default function Home() {
+// Helper function to turn the array of settings into a key-value object
+async function getSiteSettings() {
+  const { data } = await supabase.from('site_settings').select('setting_key, setting_value');
+  const settingsObj: Record<string, string> = {};
+  if (data) {
+    data.forEach(item => {
+      settingsObj[item.setting_key] = item.setting_value;
+    });
+  }
+  return settingsObj;
+}
+
+export const revalidate = 0; // Disable cache to see CMS changes immediately
+
+export default async function Home() {
+  const settings = await getSiteSettings();
+
   return (
     <>
       <Navbar />
       <main style={{ paddingTop: '80px' }}> {/* Add padding for fixed navbar */}
-        <Hero />
+        <Hero settings={settings} />
         <Mission />
         <Lineup />
-        <CompanyProfile />
+        <CompanyProfile settings={settings} />
         <Career />
         <Projects />
         <News />

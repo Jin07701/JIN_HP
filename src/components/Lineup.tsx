@@ -54,7 +54,7 @@ export default function Lineup() {
             ),
             icon: <Smartphone size={40} />,
             link: '/service#app',
-            image: ''
+            image: '/images/app-development.png'
         }
     ];
 

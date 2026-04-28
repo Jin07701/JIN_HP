@@ -1,0 +1,57 @@
+.adminContainer {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f3f4f6;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #1f2937;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarHeader {
+    padding: 20px;
+    background-color: #111827;
+    text-align: center;
+}
+
+.sidebarHeader h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.sidebarNav {
+    flex: 1;
+    padding: 20px 0;
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #d1d5db;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+    gap: 12px;
+}
+
+.navLink:hover, .navLink.active {
+    background-color: #374151;
+    color: white;
+}
+
+.sidebarFooter {
+    padding: 20px;
+    border-top: 1px solid #374151;
+}
+
+.mainContent {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}

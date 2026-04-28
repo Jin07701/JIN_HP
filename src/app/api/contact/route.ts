@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { createClient } from '@supabase/supabase-js';
 
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 const MAX_REQUESTS_PER_WINDOW = 3;
@@ -59,9 +60,44 @@ export async function POST(request: Request) {
             },
         });
 
+        // Save to Supabase DB if configured
+        let notificationEmail = 'jinadachi077@gmail.com'; // default
+        
+        if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+            const supabase = createClient(
+                process.env.NEXT_PUBLIC_SUPABASE_URL,
+                process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+            );
+            
+            // Fetch dynamic email recipient from site_settings
+            const { data: settingData } = await supabase
+                .from('site_settings')
+                .select('setting_value')
+                .eq('setting_key', 'contact_email_recipient')
+                .single();
+                
+            if (settingData?.setting_value) {
+                notificationEmail = settingData.setting_value;
+            }
+            
+            // Insert inquiry
+            const { error: dbError } = await supabase
+                .from('inquiries')
+                .insert([
+                    { name, email, category, message }
+                ]);
+                
+            if (dbError) {
+                console.error('Error saving to Supabase:', dbError);
+                // We don't fail the request if just the DB insert fails, we still try email
+            } else {
+                console.log('Successfully saved inquiry to Supabase');
+            }
+        }
+
         const mailOptions = {
             from: process.env.GMAIL_USER || 'jinadachi077@gmail.com',
-            to: 'jinadachi077@gmail.com',
+            to: notificationEmail,
             subject: `[HP Contact] ${category} - ${name}`,
             text: `
 Name: ${name}
@@ -73,11 +109,11 @@ ${message}
             `,
         };
 
-        // If credentials are not set, we can't send.
+        // If credentials are not set, we can't send email.
         if (!process.env.GMAIL_PASS) {
             console.warn('Email credentials not found. Logging email instead.');
             console.log(mailOptions);
-            return NextResponse.json({ success: true, message: 'Message logged (No SMTP credentials)' });
+            return NextResponse.json({ success: true, message: 'Message saved to DB & logged (No SMTP credentials)' });
         }
 
         await transporter.sendMail(mailOptions);
