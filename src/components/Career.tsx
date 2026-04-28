@@ -2,10 +2,10 @@
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Career.module.css';
 
-export default function Career() {
+export default function Career({ careers = [] }: { careers?: any[] }) {
     const { t } = useLanguage();
 
-    const careerData = [
+    const staticCareerData = [
         {
             period: '2025/09 ～ ' + t('現在', 'Present'),
             role: t('通信会社のマーケティング戦略', 'Marketing Strategy at Telecom Company'),
@@ -62,6 +62,13 @@ export default function Career() {
         }
     ];
 
+    const displayCareers = careers.length > 0 ? careers.map(c => ({
+        period: c.year,
+        role: c.event,
+        desc: '',
+        highlight: false
+    })) : staticCareerData;
+
     return (
         <section className={styles.section} id="career">
             <div className={styles.container}>
@@ -69,7 +76,7 @@ export default function Career() {
                     <h2 className={styles.heading}>{t('経歴', 'Career')}</h2>
                 </div>
                 <div className={styles.timeline}>
-                    {careerData.map((item, index) => (
+                    {displayCareers.map((item, index) => (
                         <div key={index} className={`${styles.item} ${item.highlight ? styles.highlight : ''}`}>
                             <div className={styles.period}>{item.period}</div>
                             <div className={styles.content}>

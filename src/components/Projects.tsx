@@ -5,10 +5,10 @@ import { ArrowUpRight, X } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Projects.module.css';
 
-export default function Projects() {
+export default function Projects({ projects = [] }: { projects?: any[] }) {
     const { t } = useLanguage();
 
-    const projectData = [
+    const staticProjectData = [
         {
             id: 1,
             image: '/images/direct-connect-showcase.png',
@@ -187,7 +187,18 @@ export default function Projects() {
         }
     ];
 
-    const [selectedProject, setSelectedProject] = useState<typeof projectData[0] | null>(null);
+    const displayProjects = projects.length > 0 ? projects.map(p => ({
+        id: p.id,
+        image: p.image_url,
+        category: p.category,
+        title: p.title,
+        desc: p.description,
+        link: p.link,
+        tags: [],
+        client: ''
+    })) : staticProjectData;
+
+    const [selectedProject, setSelectedProject] = useState<any | null>(null);
 
     return (
         <section className={styles.section} id="projects">
@@ -201,25 +212,31 @@ export default function Projects() {
                 </div>
 
                 <div className={styles.grid}>
-                    {projectData.map((project) => (
+                    {displayProjects.map((project) => (
                         <div
                             key={project.id}
                             className={styles.card}
-                            onClick={() => setSelectedProject(project)}
+                            onClick={() => {
+                                if (project.link) window.open(project.link, '_blank');
+                                else setSelectedProject(project);
+                            }}
                             role="button"
                             tabIndex={0}
                         >
                             <div className={styles.cardHeader}>
                                 <div className={styles.categoryBadge}>{project.category}</div>
-                                <span className={styles.clientName}>{project.client} {t('様', '')}</span>
+                                {project.client && <span className={styles.clientName}>{project.client} {t('様', '')}</span>}
                             </div>
+                            {project.image && <img src={project.image} alt={project.title} style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '4px', marginBottom: '10px' }} />}
                             <h3 className={styles.projectTitle}>{project.title}</h3>
-                            <p className={styles.projectDesc}>{project.desc}</p>
-                            <div className={styles.tags}>
-                                {project.tags.map((tag, idx) => (
-                                    <span key={idx} className={styles.tag}>#{tag}</span>
-                                ))}
-                            </div>
+                            <p className={styles.projectDesc} style={{ whiteSpace: 'pre-wrap' }}>{project.desc}</p>
+                            {project.tags && project.tags.length > 0 && (
+                                <div className={styles.tags}>
+                                    {project.tags.map((tag: string, idx: number) => (
+                                        <span key={idx} className={styles.tag}>#{tag}</span>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>

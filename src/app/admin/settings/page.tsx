@@ -129,7 +129,7 @@ export default function SettingsPage() {
                                 <h3 style={{ fontSize: '1rem', fontWeight: 'bold', marginBottom: '4px' }}>{String(setting.description)}</h3>
                                 <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '12px' }}>キー: {String(setting.setting_key)}</p>
                                 
-                                {isImage ? (
+                            {isImage ? (
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                                         {value && value !== '' && (
                                             <img src={value} alt="Preview" style={{ maxWidth: '300px', maxHeight: '200px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e5e7eb' }} />
@@ -147,17 +147,19 @@ export default function SettingsPage() {
                                             {uploadingImage === String(setting.id) && <span style={{ color: '#3b82f6' }}>アップロード中...</span>}
                                         </div>
                                     </div>
-                                ) : value.length > 50 || value.includes('\n') ? (
+                                ) : value.length > 50 || value.includes('\\n') || value.includes('\n') ? (
                                     <div>
                                         <textarea 
-                                            defaultValue={value}
+                                            defaultValue={value.replace(/\\n/g, '\n')}
                                             style={{ width: '100%', minHeight: '100px', padding: '8px', border: '1px solid #d1d5db', borderRadius: '4px', marginBottom: '12px' }}
                                             id={`input-${String(setting.id)}`}
                                         />
                                         <button 
                                             onClick={() => {
                                                 const el = document.getElementById(`input-${String(setting.id)}`) as HTMLTextAreaElement;
-                                                handleSave(String(setting.id), el.value);
+                                                // When saving, convert real newlines back to literal \n for DB consistency (optional, but requested by current setup)
+                                                const finalValue = el.value.replace(/\n/g, '\\n');
+                                                handleSave(String(setting.id), finalValue);
                                             }}
                                             style={{ backgroundColor: '#3b82f6', color: 'white', padding: '6px 12px', borderRadius: '4px', border: 'none', cursor: 'pointer' }}
                                         >

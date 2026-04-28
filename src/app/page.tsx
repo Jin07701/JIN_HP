@@ -12,7 +12,6 @@ import Mission from '@/components/Mission';
 import News from '@/components/News';
 import { supabase } from '@/lib/supabase';
 
-// Helper function to turn the array of settings into a key-value object
 async function getSiteSettings() {
   const { data } = await supabase.from('site_settings').select('setting_key, setting_value');
   const settingsObj: Record<string, string> = {};
@@ -28,6 +27,11 @@ export const revalidate = 0; // Disable cache to see CMS changes immediately
 
 export default async function Home() {
   const settings = await getSiteSettings();
+  
+  // Fetch dynamic collections
+  const { data: newsData } = await supabase.from('news').select('*').order('created_at', { ascending: false });
+  const { data: projectsData } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
+  const { data: careersData } = await supabase.from('careers').select('*').order('year', { ascending: false });
 
   return (
     <>
@@ -37,9 +41,9 @@ export default async function Home() {
         <Mission />
         <Lineup />
         <CompanyProfile settings={settings} />
-        <Career />
-        <Projects />
-        <News />
+        <Career careers={careersData || []} />
+        <Projects projects={projectsData || []} />
+        <News news={newsData || []} />
         <Contact />
       </main>
       <Footer />

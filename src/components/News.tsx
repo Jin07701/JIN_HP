@@ -4,11 +4,11 @@ import { ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './News.module.css';
 
-export default function News() {
+export default function News({ news = [] }: { news?: any[] }) {
     const { t } = useLanguage();
 
-    // Single news item as requested, linking to Note
-    const newsItems = [
+    // Use dynamic news if available, otherwise fallback to static
+    const newsItems = news.length > 0 ? news : [
         {
             date: '2026.04.01',
             category: t('お知らせ', 'Notice'),

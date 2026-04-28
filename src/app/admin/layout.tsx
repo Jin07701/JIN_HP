@@ -25,7 +25,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
         const checkAuth = async () => {
             const { data: { session } } = await supabase.auth.getSession();
-            if (!session || session.user.email !== 'jinadachi077@gmail.com') {
+            if (!session) {
+                router.push('/admin/login');
+            } else if (session.user.email !== 'jinadachi077@gmail.com') {
+                // Log unauthorized access
+                await supabase.from('security_logs').insert([{
+                    email: session.user.email,
+                    action: 'unauthorized_admin_access',
+                    user_agent: navigator.userAgent
+                }]);
+                
+                await supabase.auth.signOut();
+                alert('不正なアクセスとして記録されました。許可されたアカウントでログインしてください。');
                 router.push('/admin/login');
             } else {
                 setIsAuthorized(true);
@@ -63,6 +74,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         { href: '/admin', label: 'ダッシュボード', icon: <LayoutDashboard size={20} /> },
         { href: '/admin/settings', label: 'サイト設定', icon: <Settings size={20} /> },
         { href: '/admin/news', label: 'ニュース管理', icon: <FileText size={20} /> },
+        { href: '/admin/projects', label: '実績管理', icon: <FileText size={20} /> },
+        { href: '/admin/careers', label: '経歴管理', icon: <FileText size={20} /> },
+        { href: '/admin/inquiries', label: 'お問い合わせ一覧', icon: <FileText size={20} /> },
+        { href: '/admin/security', label: 'セキュリティ監視', icon: <FileText size={20} /> },
     ];
 
     return (
