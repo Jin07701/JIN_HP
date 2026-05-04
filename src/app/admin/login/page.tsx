@@ -11,12 +11,18 @@ export default function LoginPage() {
         // Check if already logged in
         supabase.auth.getSession().then(({ data: { session } }) => {
             if (session) {
-                if (session.user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+                const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+                console.log('Admin check:', { 
+                    isSet: !!adminEmail, 
+                    match: session.user.email?.toLowerCase() === adminEmail?.toLowerCase() 
+                });
+
+                if (adminEmail && session.user.email?.toLowerCase() === adminEmail.toLowerCase()) {
                     router.push('/admin/settings');
                 } else {
                     // Wrong user, sign out
                     supabase.auth.signOut();
-                    alert('アクセス権限がありません。管理者アカウントでのみ許可されています。');
+                    alert(`アクセス権限がありません。管理者アカウントでのみ許可されています。${!adminEmail ? '(設定エラー: 環境変数が未設定です)' : ''}`);
                 }
             }
             setLoading(false);
