@@ -25,11 +25,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
         const checkAuth = async () => {
             const { data: { session } } = await supabase.auth.getSession();
-            const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+            let adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 
             if (!session) {
                 router.push('/admin/login');
-            } else if (!adminEmail || session.user.email?.toLowerCase() !== adminEmail.toLowerCase()) {
+                setLoading(false);
+                return;
+            }
+
+            // Fallback to database if env var is missing
+            if (!adminEmail) {
+                const { data } = await supabase.from('site_settings').select('setting_value').eq('setting_key', 'contact_email_recipient').single();
+                adminEmail = data?.setting_value;
+            }
+
+            if (!adminEmail || session.user.email?.toLowerCase() !== adminEmail.toLowerCase()) {
                 // Log unauthorized access
                 await supabase.from('security_logs').insert([{
                     email: session.user.email,

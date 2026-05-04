@@ -9,20 +9,26 @@ export default function LoginPage() {
 
     useEffect(() => {
         // Check if already logged in
-        supabase.auth.getSession().then(({ data: { session } }) => {
+        supabase.auth.getSession().then(async ({ data: { session } }) => {
             if (session) {
-                const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
-                console.log('Admin check:', { 
-                    isSet: !!adminEmail, 
-                    match: session.user.email?.toLowerCase() === adminEmail?.toLowerCase() 
-                });
+                let adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+                
+                // Fallback to database if env var is missing
+                if (!adminEmail) {
+                    const { data } = await supabase.from('site_settings').select('setting_value').eq('setting_key', 'contact_email_recipient').single();
+                    adminEmail = data?.setting_value;
+                }
 
-                if (adminEmail && session.user.email?.toLowerCase() === adminEmail.toLowerCase()) {
+                const isMatch = adminEmail && session.user.email?.toLowerCase() === adminEmail.toLowerCase();
+                
+                console.log('Admin check:', { isSet: !!adminEmail, match: isMatch });
+
+                if (isMatch) {
                     router.push('/admin/settings');
                 } else {
                     // Wrong user, sign out
                     supabase.auth.signOut();
-                    alert(`アクセス権限がありません。管理者アカウントでのみ許可されています。${!adminEmail ? '(設定エラー: 環境変数が未設定です)' : ''}`);
+                    alert(`アクセス権限がありません。管理者アカウントでのみ許可されています。${!adminEmail ? '(設定エラー: 管理者情報が取得できません)' : ''}`);
                 }
             }
             setLoading(false);
