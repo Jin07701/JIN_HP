@@ -20,6 +20,7 @@ export default function Projects({ projects = [] }: { projects?: any[] }) {
                 'From over 1000 detected vulnerabilities, introduced response flow and automated patching (PowerShell/Ansible). Cleared over 600 issues through weekly actions, improving security level for the Japan team.'
             ),
             tags: ['Vulnerability', 'Automation', 'Azure', 'PowerShell'],
+            link: '',
             details: [
                 {
                     heading: t('脆弱性対応', 'Vulnerability Response'),
@@ -75,6 +76,7 @@ export default function Projects({ projects = [] }: { projects?: any[] }) {
                 'Visualized decision flows and facilitated to resolve stagnation in the next-gen system renewal PJ. Clarified deadlines and resolved conflicts to ensure on-time launch.'
             ),
             tags: ['PMO', 'Facilitation', 'Requirement Def'],
+            link: '',
             details: [
                 {
                     heading: t('病院へ自社システムの営業/提案', 'Sales/Proposal of proprietary system to hospitals'),
@@ -133,7 +135,8 @@ export default function Projects({ projects = [] }: { projects?: any[] }) {
                 '3ヶ月に1度20時間を要していた監査対応作業に対し、根本的な業務プロセスの見直しを実施。関係者調整の上で代替案を提示し、当該作業をゼロベースで削減。業務効率とガバナンスの両立を達成。',
                 'Reviewed business processes for audit response that took 20h every 3 months. Proposed alternatives and reduced the work to zero, balancing efficiency and governance.'
             ),
-            tags: ['Efficiency', 'Audit', 'Process Improvement']
+            tags: ['Efficiency', 'Audit', 'Process Improvement'],
+            link: ''
         },
         {
             id: 4,
@@ -146,6 +149,7 @@ export default function Projects({ projects = [] }: { projects?: any[] }) {
                 'Handled server design, build, and maintenance for bank/securities systems. Engaged in automation (Ansible), VBA tool creation, and vulnerability research.'
             ),
             tags: ['Linux', 'Windows Server', 'Ansible', 'Oracle', 'WebLogic'],
+            link: '',
             details: [
                 {
                     heading: t('証券会社の被災環境サーバ構築PJ (2016/3 - 2016/8)', 'Securities Co. Disaster Recovery Server Build PJ'),
@@ -256,11 +260,11 @@ export default function Projects({ projects = [] }: { projects?: any[] }) {
 
                             <div className={styles.modalBody}>
                                 {selectedProject.details ? (
-                                    selectedProject.details.map((section, idx) => (
+                                    selectedProject.details.map((section: any, idx: number) => (
                                         <div key={idx} className={styles.detailSection}>
                                             <h4 className={styles.detailHeading}>{section.heading}</h4>
                                             <ul className={styles.detailList}>
-                                                {section.items.map((item, i) => (
+                                                {section.items.map((item: any, i: number) => (
                                                     <li key={i}>{item}</li>
                                                 ))}
                                             </ul>

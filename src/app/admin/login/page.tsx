@@ -11,7 +11,7 @@ export default function LoginPage() {
         // Check if already logged in
         supabase.auth.getSession().then(({ data: { session } }) => {
             if (session) {
-                if (session.user.email === 'jinadachi077@gmail.com') {
+                if (session.user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
                     router.push('/admin/settings');
                 } else {
                     // Wrong user, sign out

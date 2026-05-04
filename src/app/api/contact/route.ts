@@ -55,13 +55,13 @@ export async function POST(request: Request) {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.GMAIL_USER || 'jinadachi077@gmail.com',
-                pass: process.env.GMAIL_PASS || 'your-app-password',
+                user: process.env.GMAIL_USER,
+                pass: process.env.GMAIL_PASS,
             },
         });
 
         // Save to Supabase DB if configured
-        let notificationEmail = 'jinadachi077@gmail.com'; // default
+        let notificationEmail = process.env.ADMIN_EMAIL || ''; // Use env var
         
         if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
             const supabase = createClient(
@@ -96,7 +96,7 @@ export async function POST(request: Request) {
         }
 
         const mailOptions = {
-            from: process.env.GMAIL_USER || 'jinadachi077@gmail.com',
+            from: process.env.GMAIL_USER,
             to: notificationEmail,
             subject: `[HP Contact] ${category} - ${name}`,
             text: `

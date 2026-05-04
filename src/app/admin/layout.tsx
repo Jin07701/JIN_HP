@@ -27,7 +27,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             const { data: { session } } = await supabase.auth.getSession();
             if (!session) {
                 router.push('/admin/login');
-            } else if (session.user.email !== 'jinadachi077@gmail.com') {
+            } else if (session.user.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
                 // Log unauthorized access
                 await supabase.from('security_logs').insert([{
                     email: session.user.email,
@@ -47,7 +47,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
             if (pathname !== '/admin/login') {
-                if (!session || session.user.email !== 'jinadachi077@gmail.com') {
+                if (!session || session.user.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
                     router.push('/admin/login');
                 } else {
                     setIsAuthorized(true);
