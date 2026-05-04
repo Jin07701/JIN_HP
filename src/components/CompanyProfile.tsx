@@ -25,8 +25,19 @@ export default function CompanyProfile({ settings }: { settings?: Record<string,
                         <p className={styles.bodyText} style={{ whiteSpace: 'pre-wrap' }}>
                             {settings?.company_message || '私たちは、最先端のAI技術と独自のアルゴリズムを活用し、企業とエンジニアの最適なマッチングを実現します。単なるスキルマッチングにとどまらず、ビジョンやカルチャーの適合性を深く分析することで、双方が真に共鳴し、共に成長できる環境を創出します。'}
                         </p>
+                        <div style={{ marginTop: '20px', fontWeight: 'bold', textAlign: 'right' }}>
+                            {settings?.company_name || '株式会社ARISTA'}<br />
+                            代表 {settings?.company_representative || 'Jin Adachi'}
+                        </div>
                     </div>
                 </div>
+
+                {settings?.company_origin_ja && (
+                    <div style={{ marginTop: '60px', padding: '40px', backgroundColor: '#f9fafb', borderRadius: '12px' }}>
+                        <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '20px', textAlign: 'center' }}>ORIGIN</h3>
+                        <p style={{ lineHeight: '1.8', whiteSpace: 'pre-wrap' }}>{settings.company_origin_ja}</p>
+                    </div>
+                )}
 
                 <div className={styles.infoSection}>
                     <dl className={styles.dl}>
@@ -48,11 +59,15 @@ export default function CompanyProfile({ settings }: { settings?: Record<string,
                         </div>
                         <div className={styles.row}>
                             <dt>{t('事業内容', 'Business Activities')}</dt>
-                            <dd>
-                                {t('・エンジニアマッチングプラットフォーム「ITダイレクトマッチ」の運営', '・Operation of Engineer Matching Platform "IT Direct Match"')}<br />
-                                {t('・アプリ開発事業', '・App Development Business')}<br />
-                                {t('・ITコンサルティング事業', '・IT Consulting Business')}<br />
-                                {t('・セキュリティ監査・診断事業', '・Security Audit & Assessment Business')}
+                            <dd style={{ whiteSpace: 'pre-wrap' }}>
+                                {settings?.company_business_activities ? settings.company_business_activities.replace(/\\n/g, '\n') : (
+                                    <>
+                                        {t('・エンジニアマッチングプラットフォーム「ITダイレクトマッチ」の運営', '・Operation of Engineer Matching Platform "IT Direct Match"')}<br />
+                                        {t('・アプリ開発事業', '・App Development Business')}<br />
+                                        {t('・ITコンサルティング事業', '・IT Consulting Business')}<br />
+                                        {t('・セキュリティ監査・診断事業', '・Security Audit & Assessment Business')}
+                                    </>
+                                )}
                             </dd>
                         </div>
                     </dl>

@@ -9,9 +9,18 @@ const TABS = [
 ];
 
 const CATEGORY_MAP: Record<string, string[]> = {
-    'basic': ['company_name', 'company_established', 'company_representative', 'company_address', 'contact_email_recipient'],
+    'basic': ['contact_email_recipient'],
     'hero': ['hero_title_ja', 'hero_title_en', 'hero_subtitle_ja', 'hero_bg_image'],
-    'company': ['company_message', 'company_message_image'],
+    'company': [
+        'company_name', 
+        'company_established', 
+        'company_representative', 
+        'company_address', 
+        'company_message', 
+        'company_message_image',
+        'company_origin_ja',
+        'company_business_activities'
+    ],
 };
 
 export default function SettingsPage() {
@@ -80,6 +89,47 @@ export default function SettingsPage() {
             alert(err.message || 'アップロード中にエラーが発生しました。');
         } finally {
             setUploadingImage(null);
+        }
+    };
+
+    const handleInitializeDefaults = async () => {
+        setLoading(true);
+        try {
+            const defaults = [
+                { setting_key: 'company_name', setting_value: '株式会社ARISTA（アリスタ）', description: '会社名' },
+                { setting_key: 'company_established', setting_value: '2026年5月', description: '設立年月' },
+                { setting_key: 'company_representative', setting_value: 'Jin Adachi', description: '代表者名' },
+                { setting_key: 'company_address', setting_value: '〒810-0001 福岡県福岡市中央区天神2丁目2番12号T&Jビルディング7F', description: '所在地' },
+                { setting_key: 'company_message', setting_value: '私たちは、最先端のAI技術と独自のアルゴリズムを活用し、企業とエンジニアの最適なマッチングを実現します。', description: '代表メッセージテキスト' },
+                { setting_key: 'company_message_image', setting_value: '/images/hero-premium.png', description: '代表メッセージ画像 URL' },
+                { setting_key: 'company_origin_ja', setting_value: '「ARISTA」はラテン語で「穂」や「先端・頂点」を意味する言葉です...', description: '社名の由来' },
+                { setting_key: 'company_business_activities', setting_value: '・エンジニアマッチングプラットフォーム「ITダイレクトマッチ」の運営\\n・アプリ開発事業\\n・ITコンサルティング事業\\n・セキュリティ監査・診断事業', description: '事業内容' },
+                { setting_key: 'contact_email_recipient', setting_value: 'jinadachi077@gmail.com', description: 'お問い合わせ通知先メールアドレス' },
+                { setting_key: 'hero_title_ja', setting_value: '卓越したエンジニアと、\\n理想の未来を。', description: 'キャッチコピー（日本語）' },
+                { setting_key: 'hero_title_en', setting_value: 'With Outstanding Engineers,\\nCreate Ideal Future.', description: 'キャッチコピー（英語）' },
+                { setting_key: 'hero_subtitle_ja', setting_value: 'ARISTAは、頂点を極めるテクノロジーで世界を再定義し、\\n選ばれしエンジニアと企業が共鳴する、新たな頂を目指します。', description: 'サブキャッチコピー（日本語）' },
+                { setting_key: 'hero_bg_image', setting_value: '/images/hero-bg.jpg', description: 'トップ背景画像 (Hero Background Image URL)' }
+            ];
+
+            // Filter out existing settings
+            const existingKeys = settings.map(s => s.setting_key);
+            const toInsert = defaults.filter(d => !existingKeys.includes(d.setting_key));
+
+            if (toInsert.length === 0) {
+                alert('すべての設定項目は既に存在します。');
+                return;
+            }
+
+            const { error } = await supabase.from('site_settings').insert(toInsert);
+            if (error) throw error;
+
+            alert(`${toInsert.length}件の項目を初期化しました。`);
+            window.location.reload();
+        } catch (err) {
+            console.error(err);
+            alert('初期化に失敗しました。');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -190,11 +240,15 @@ export default function SettingsPage() {
                     })}
                     
                     {currentSettings.length === 0 && !error && (
-                        <div style={{ padding: '20px', backgroundColor: '#f9fafb', borderRadius: '8px', border: '1px dashed #d1d5db' }}>
-                            <p>このカテゴリの設定が見つかりません。</p>
-                            <p style={{ fontSize: '0.875rem', color: '#6b7280', marginTop: '8px' }}>
-                                SQLエディタで最新のデータベース構築スクリプト（supabase_schema.sql）を実行してください。
-                            </p>
+                        <div style={{ padding: '40px', backgroundColor: '#f9fafb', borderRadius: '8px', border: '1px dashed #d1d5db', textAlign: 'center' }}>
+                            <p style={{ fontSize: '1.125rem', marginBottom: '10px' }}>このカテゴリの設定が見つかりません。</p>
+                            <p style={{ color: '#6b7280', marginBottom: '24px' }}>データベースに初期データが存在しない可能性があります。</p>
+                            <button 
+                                onClick={handleInitializeDefaults}
+                                style={{ backgroundColor: '#10b981', color: 'white', padding: '10px 20px', borderRadius: '4px', border: 'none', cursor: 'pointer', fontWeight: 'bold' }}
+                            >
+                                設定項目を初期化する（デフォルト値を投入）
+                            </button>
                         </div>
                     )}
                 </div>
