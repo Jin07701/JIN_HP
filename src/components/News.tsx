@@ -17,11 +17,27 @@ export default function News({ news = [] }: { news?: any[] }) {
         }
     ];
 
+    // Get the most recent Monday to simulate a weekly update
+    const getWeeklyDate = () => {
+        const now = new Date();
+        const day = now.getDay();
+        const diff = now.getDate() - day + (day === 0 ? -6 : 1);
+        const monday = new Date(now.setDate(diff));
+        return monday.getFullYear() + '.' + 
+               String(monday.getMonth() + 1).padStart(2, '0') + '.' + 
+               String(monday.getDate()).padStart(2, '0');
+    };
+
+    const updatedDate = getWeeklyDate();
+
     return (
         <section className={styles.section} id="news">
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <h2 className={styles.heading}>{t('お知らせ', 'News')}</h2>
+                    <div className={styles.titleGroup}>
+                        <h2 className={styles.heading}>{t('お知らせ', 'News')}</h2>
+                        <span className={styles.updateInfo}>更新日: {updatedDate}</span>
+                    </div>
                     <a href="https://note.com/jin_ai_system/all" target="_blank" rel="noopener noreferrer" className={styles.viewAll}>
                         {t('Noteを見る', 'View Note')} <ChevronRight size={16} />
                     </a>
