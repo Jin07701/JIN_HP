@@ -29,6 +29,8 @@ export default function SettingsPage() {
     const [error, setError] = useState<string | null>(null);
     const [activeTab, setActiveTab] = useState('basic');
     const [uploadingImage, setUploadingImage] = useState<string | null>(null);
+    const [savingId, setSavingId] = useState<string | null>(null);
+    const [successId, setSuccessId] = useState<string | null>(null);
 
     useEffect(() => {
         async function fetchSettings() {
@@ -47,16 +49,23 @@ export default function SettingsPage() {
     }, []);
 
     const handleSave = async (id: string, value: string) => {
+        setSavingId(id);
+        setSuccessId(null);
         try {
             const { error } = await supabase.from('site_settings').update({ setting_value: value }).eq('id', id);
             if (error) throw error;
             
             // Update local state
             setSettings(settings.map(s => String(s.id) === id ? { ...s, setting_value: value } : s));
-            alert('保存しました！');
+            
+            // Show success state briefly
+            setSuccessId(id);
+            setTimeout(() => setSuccessId(null), 3000);
         } catch (err) {
             console.error(err);
             alert('保存に失敗しました。');
+        } finally {
+            setSavingId(null);
         }
     };
 
@@ -207,13 +216,21 @@ export default function SettingsPage() {
                                         <button 
                                             onClick={() => {
                                                 const el = document.getElementById(`input-${String(setting.id)}`) as HTMLTextAreaElement;
-                                                // When saving, convert real newlines back to literal \n for DB consistency (optional, but requested by current setup)
                                                 const finalValue = el.value.replace(/\n/g, '\\n');
                                                 handleSave(String(setting.id), finalValue);
                                             }}
-                                            style={{ backgroundColor: '#3b82f6', color: 'white', padding: '6px 12px', borderRadius: '4px', border: 'none', cursor: 'pointer' }}
+                                            disabled={savingId === String(setting.id)}
+                                            style={{ 
+                                                backgroundColor: successId === String(setting.id) ? '#10b981' : '#3b82f6', 
+                                                color: 'white', 
+                                                padding: '6px 12px', 
+                                                borderRadius: '4px', 
+                                                border: 'none', 
+                                                cursor: savingId === String(setting.id) ? 'not-allowed' : 'pointer',
+                                                transition: 'all 0.3s ease'
+                                            }}
                                         >
-                                            変更を保存
+                                            {savingId === String(setting.id) ? '保存中...' : successId === String(setting.id) ? '✓ 保存しました' : '変更を保存'}
                                         </button>
                                     </div>
                                 ) : (
@@ -229,9 +246,18 @@ export default function SettingsPage() {
                                                 const el = document.getElementById(`input-${String(setting.id)}`) as HTMLInputElement;
                                                 handleSave(String(setting.id), el.value);
                                             }}
-                                            style={{ backgroundColor: '#3b82f6', color: 'white', padding: '6px 12px', borderRadius: '4px', border: 'none', cursor: 'pointer' }}
+                                            disabled={savingId === String(setting.id)}
+                                            style={{ 
+                                                backgroundColor: successId === String(setting.id) ? '#10b981' : '#3b82f6', 
+                                                color: 'white', 
+                                                padding: '6px 12px', 
+                                                borderRadius: '4px', 
+                                                border: 'none', 
+                                                cursor: savingId === String(setting.id) ? 'not-allowed' : 'pointer',
+                                                transition: 'all 0.3s ease'
+                                            }}
                                         >
-                                            変更を保存
+                                            {savingId === String(setting.id) ? '保存中...' : successId === String(setting.id) ? '✓ 保存しました' : '変更を保存'}
                                         </button>
                                     </div>
                                 )}
