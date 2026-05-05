@@ -77,7 +77,7 @@ export default function Contact() {
                                 <input
                                     type="text"
                                     id="name"
-                                    placeholder={t("山田 太郎", "Taro Yamada")}
+                                    placeholder={t("アリスタ 太郎", "Taro Arista")}
                                     required
                                     value={formData.name}
                                     onChange={handleChange}
@@ -88,7 +88,7 @@ export default function Contact() {
                                 <input
                                     type="email"
                                     id="email"
-                                    placeholder="example@directjapan.co.jp"
+                                    placeholder="info@arista.co.jp"
                                     required
                                     value={formData.email}
                                     onChange={handleChange}
