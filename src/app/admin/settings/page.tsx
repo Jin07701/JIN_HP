@@ -4,7 +4,7 @@ import { supabase } from '@/lib/supabase';
 
 const TABS = [
     { id: 'basic', label: '基本設定' },
-    { id: 'hero', label: 'トップ画面 (Hero)' },
+    { id: 'hero', label: 'トップ画面' },
     { id: 'company', label: '会社概要' },
 ];
 
@@ -108,7 +108,7 @@ export default function SettingsPage() {
                 { setting_key: 'hero_title_ja', setting_value: '卓越したエンジニアと、\\n理想の未来を。', description: 'キャッチコピー（日本語）' },
                 { setting_key: 'hero_title_en', setting_value: 'With Outstanding Engineers,\\nCreate Ideal Future.', description: 'キャッチコピー（英語）' },
                 { setting_key: 'hero_subtitle_ja', setting_value: 'ARISTAは、頂点を極めるテクノロジーで世界を再定義し、\\n選ばれしエンジニアと企業が共鳴する、新たな頂を目指します。', description: 'サブキャッチコピー（日本語）' },
-                { setting_key: 'hero_bg_image', setting_value: '/images/hero-bg.jpg', description: 'トップ背景画像 (Hero Background Image URL)' }
+                { setting_key: 'hero_bg_image', setting_value: '/images/hero-bg.jpg', description: 'トップ背景画像' }
             ];
 
             // Filter out existing settings
