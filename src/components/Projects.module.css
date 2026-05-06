@@ -85,87 +85,85 @@
 }
 
 .grid {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
 }
 
 .card {
     background-color: #fff;
     border: 1px solid #e2e8f0;
-    border-radius: 2px; /* Sharp technical edges */
+    border-radius: 4px;
     display: flex;
+    flex-direction: column;
     position: relative;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    box-shadow: 10px 10px 0px rgba(15, 23, 42, 0.05);
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .card:hover {
-    transform: translate(-5px, -5px);
-    box-shadow: 20px 20px 0px rgba(59, 130, 246, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
     border-color: #3b82f6;
 }
 
 .cardNumber {
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    font-size: 4rem;
-    font-weight: 900;
-    color: rgba(15, 23, 42, 0.03);
-    line-height: 1;
-    font-family: 'Inter', sans-serif;
-    pointer-events: none;
+    display: none; /* Removed for compactness */
 }
 
 .cardContent {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.cardVisual {
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+    background-color: #0f172a;
 }
 
 .cardMain {
-    padding: 40px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    flex-grow: 1;
 }
 
 .meta {
     display: flex;
-    gap: 15px;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .category {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 800;
     color: #3b82f6;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
 }
 
 .client {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: #94a3b8;
-    font-weight: 500;
 }
 
 .projectTitle {
-    font-size: 1.75rem;
+    font-size: 1.2rem;
     font-weight: 800;
     color: #0f172a;
-    margin-bottom: 20px;
-    line-height: 1.2;
+    margin-bottom: 12px;
+    line-height: 1.3;
 }
 
 .projectDesc {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: #475569;
-    line-height: 1.7;
-    margin-bottom: 30px;
+    line-height: 1.6;
+    margin-bottom: 20px;
 }
 
 .tags {
