@@ -62,7 +62,7 @@ export default function Lineup() {
         <section className={styles.section} id="service">
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <h2 className={styles.title}>{t('サービス一覧', 'Our Services')}</h2>
+                    <h2 className={styles.title}>{t('事業内容', 'Business Details')}</h2>
                 </div>
 
                 <div className={styles.grid}>

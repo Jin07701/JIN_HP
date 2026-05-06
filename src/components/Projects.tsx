@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ArrowUpRight, X } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Projects.module.css';
+import { Network, Cpu, Layout, FileText } from 'lucide-react';
 
 export default function Projects({ projects = [] }: { projects?: any[] }) {
     const { t } = useLanguage();
@@ -11,13 +12,14 @@ export default function Projects({ projects = [] }: { projects?: any[] }) {
     const staticProjectData = [
         {
             id: 1,
-            image: '/images/direct-connect-showcase.png',
+            image: '/images/abstract_security_infra_1778050259971.png',
+            icon: <Network size={32} />,
             category: t('セキュリティ / インフラ', 'Security / Infrastructure'),
             client: t('外資通販会社・他', 'Foreign E-commerce Company, etc.'),
             title: t('脆弱性対応・セキュリティ自動化', 'Vulnerability Response & Security Automation'),
             desc: t(
-                '脆弱性検知数が1000件を超える状態から、対応フロー整備とパッチ適用自動化（PowerShell/Ansible）を導入。週次定例でのアクション明確化により、600件以上を解消し、Japanチームのセキュリティレベル向上に貢献。',
-                'From over 1000 detected vulnerabilities, introduced response flow and automated patching (PowerShell/Ansible). Cleared over 600 issues through weekly actions, improving security level for the Japan team.'
+                '脆弱性検知数が1000件を超える状態から、対応フロー整備とパッチ適用自動化を導入。Japanチームのセキュリティレベル向上に大きく貢献しました。',
+                'Introduced response flow and automated patching from over 1000 detected vulnerabilities. Contributed to improving the security level for the Japan team.'
             ),
             tags: ['Vulnerability', 'Automation', 'Azure', 'PowerShell'],
             link: '',
@@ -30,50 +32,19 @@ export default function Projects({ projects = [] }: { projects?: any[] }) {
                         t('WindowsServerやLinuxServerを検証用に構築し、セキュリティテストを実施', 'Built Windows/Linux servers for verification and conducted security tests'),
                         t('対策立案資料の作成や提案業務', 'Proposal creation and suggestions for countermeasures')
                     ]
-                },
-                {
-                    heading: t('Server構築・運用＆パッチ適用', 'Server Build/Operation & Patching'),
-                    items: [
-                        t('WindowsServerやLinux(RHELやOracle)Serverの設計・構築・運用', 'Design, build, and operation of Windows/Linux (RHEL, Oracle) Servers'),
-                        t('OSやMS製品関連・VM関連の定期的なパッチ適用(IvantiやAnsible、Azure)', 'Regular patching for OS, MS products, VM (Ivanti, Ansible, Azure)'),
-                        t('dnf / yum を用いた Linux Serverのセキュリティパッチ適用と適用時エラーの調査・対応', 'Security patching for Linux Servers using dnf/yum and troubleshooting errors'),
-                        t('アナウンスやサービス停止起動処理の自動化 (outlookやBitbucket)', 'Automation of announcements and service stop/start processes (Outlook, Bitbucket)')
-                    ]
-                },
-                {
-                    heading: t('老朽化・脆弱性の高いServerのリタイヤ対応', 'Retirement of aging/high-vulnerability servers'),
-                    items: [
-                        t('EOLServerの移行/リタイヤ計画', 'Migration/retirement plan for EOL Servers'),
-                        t('Serverリタイヤに向けた各チームとの調整', 'Coordination with teams for server retirement')
-                    ]
-                },
-                {
-                    heading: t('新サーバ導入時のパッチ適用計画策定', 'Patch application planning for new server introduction'),
-                    items: [
-                        t('対象OS・ミドルウェアのパッチ適用方針の策定', 'Formulation of patch application policy for target OS/middleware'),
-                        t('適用手順書・スケジュールの作成', 'Creation of application procedures and schedule'),
-                        t('適用後の動作確認項目の定義', 'Definition of post-application verification items')
-                    ]
-                },
-                {
-                    heading: t('BlueCoat廃止に伴うFW移行', 'FW migration due to BlueCoat decommissioning'),
-                    items: [
-                        t('BlueCoat上のアクセス制御・ポリシー設定の棚卸・エクスポート', 'Inventory/export of access control/policy settings on BlueCoat'),
-                        t('ファイアウォール (FW) への移行要件定義 (ポリシー/フィルタリングルール)', 'Definition of migration requirements to Firewall (FW) (policy/filtering rules)'),
-                        t('関係部署・システム担当者とのFW移行要件調整・承認取得', 'Coordination/approval of FW migration requirements with related departments/system personnel')
-                    ]
                 }
             ]
         },
         {
             id: 2,
-            image: '/images/direct-connect-match.png',
+            image: '/images/abstract_pm_consulting_illu_1778050279493.png',
+            icon: <Cpu size={32} />,
             category: t('PM / コンサルティング', 'PM / Consulting'),
             client: t('自動車関連・医療機関', 'Automotive / Medical Institutions'),
             title: t('大規模システム更新・PJ推進', 'Large-scale System Renewal & PJ Promotion'),
             desc: t(
-                '次期システム更新PJにて、チーム間の連携停滞を解消するため、意思決定フローを可視化しファシリテーションを実施。「何をいつまでに決めるか」を明示し、対立構造を解消して計画通りのシステム稼働を実現。',
-                'Visualized decision flows and facilitated to resolve stagnation in the next-gen system renewal PJ. Clarified deadlines and resolved conflicts to ensure on-time launch.'
+                '次期システム更新PJにて、意思決定フローを可視化しファシリテーションを実施。計画通りのシステム稼働と対立構造の解消を実現しました。',
+                'Visualized decision flows and facilitated to resolve stagnation in the next-gen system renewal PJ. Ensured on-time launch and resolved conflicts.'
             ),
             tags: ['PMO', 'Facilitation', 'Requirement Def'],
             link: '',
@@ -82,29 +53,6 @@ export default function Projects({ projects = [] }: { projects?: any[] }) {
                     heading: t('病院へ自社システムの営業/提案', 'Sales/Proposal of proprietary system to hospitals'),
                     items: [
                         t('顧客要件のヒアリングと課題分析', 'Hearing client requirements and analyzing issues'),
-                        t('自社システムの提案資料・デモ環境の作成', 'Creation of proposal documents and demo environment'),
-                        t('導入スケジュールや見積もりの提示・調整', 'Presentation and adjustment of introduction schedule and estimates')
-                    ]
-                },
-                {
-                    heading: t('システムコンサルティング（要望確認・要件定義など）', 'System Consulting (Requirement Confirmation/Definition, etc.)'),
-                    items: [
-                        t('顧客ヒアリングによる業務課題と要望の整理', 'Organizing business issues and requests through client hearings'),
-                        t('要件定義書・機能仕様書の作成', 'Creation of requirements definition and functional specifications'),
-                        t('提案内容に基づくシステム化計画の策定', 'Formulation of systemization plan based on proposal')
-                    ]
-                },
-                {
-                    heading: t('開発チームとの仕様検討', 'Specification Review with Development Team'),
-                    items: [
-                        t('開発チームとの仕様提案・設計調整', 'Specification proposal and design coordination with development team'),
-                        t('UI設計（画面レイアウト、操作フロー、ユーザビリティ検討）', 'UI Design (Screen layout, operation flow, usability review)')
-                    ]
-                },
-                {
-                    heading: t('自社パッケージシステム導入対応', 'Implementation of Proprietary Package System'),
-                    items: [
-                        t('顧客との打ち合わせによる要件確認・導入計画策定', 'Requirement confirmation and introduction planning through client meetings'),
                         t('インストール・初期設定・データ移行作業', 'Installation, initial setup, and data migration'),
                         t('導入後の動作確認・ユーザー向け操作説明会', 'Post-installation verification and user operation training')
                     ]
@@ -208,15 +156,18 @@ export default function Projects({ projects = [] }: { projects?: any[] }) {
         <section className={styles.section} id="projects">
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <h2 className={styles.title}>{t('実績紹介', 'Projects')}</h2>
-                    <p className={styles.subTitle}>{t('プロジェクト事例', 'Case Studies')}</p>
+                    <div className={styles.titleArea}>
+                        <h2 className={styles.title}>{t('実績紹介', 'Projects')}</h2>
+                        <div className={styles.divider}></div>
+                        <p className={styles.subTitle}>{t('技術と信頼の軌跡', 'Trace of Tech & Trust')}</p>
+                    </div>
                     <Link href="/projects" className={styles.viewAll}>
                         {t('すべての実績を見る', 'View All Projects')} <ArrowUpRight size={18} />
                     </Link>
                 </div>
 
                 <div className={styles.grid}>
-                    {displayProjects.map((project) => (
+                    {displayProjects.map((project, index) => (
                         <div
                             key={project.id}
                             className={styles.card}
@@ -227,20 +178,26 @@ export default function Projects({ projects = [] }: { projects?: any[] }) {
                             role="button"
                             tabIndex={0}
                         >
-                            <div className={styles.cardHeader}>
-                                <div className={styles.categoryBadge}>{project.category}</div>
-                                {project.client && <span className={styles.clientName}>{project.client} {t('様', '')}</span>}
-                            </div>
-                            {project.image && <img src={project.image} alt={project.title} style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '4px', marginBottom: '10px' }} />}
-                            <h3 className={styles.projectTitle}>{project.title}</h3>
-                            <p className={styles.projectDesc} style={{ whiteSpace: 'pre-wrap' }}>{project.desc}</p>
-                            {project.tags && project.tags.length > 0 && (
-                                <div className={styles.tags}>
-                                    {project.tags.map((tag: string, idx: number) => (
-                                        <span key={idx} className={styles.tag}>#{tag}</span>
-                                    ))}
+                            <div className={styles.cardNumber}>0{index + 1}</div>
+                            <div className={styles.cardContent}>
+                                <div className={styles.cardMain}>
+                                    <div className={styles.meta}>
+                                        <span className={styles.category}>{project.category}</span>
+                                        {project.client && <span className={styles.client}>{project.client}</span>}
+                                    </div>
+                                    <h3 className={styles.projectTitle}>{project.title}</h3>
+                                    <p className={styles.projectDesc}>{project.desc}</p>
+                                    <div className={styles.tags}>
+                                        {project.tags?.map((tag: string, idx: number) => (
+                                            <span key={idx} className={styles.tag}>#{tag}</span>
+                                        ))}
+                                    </div>
                                 </div>
-                            )}
+                                <div className={styles.cardVisual}>
+                                    <img src={project.image} alt="" className={styles.visualImage} />
+                                    <div className={styles.blueprintOverlay}></div>
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>
