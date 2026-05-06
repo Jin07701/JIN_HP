@@ -75,25 +75,46 @@ export default function Projects({ projects = [] }: { projects?: any[] }) {
         },
         {
             id: 3,
-            image: '/images/company-profile-concept.jpg',
+            image: '/images/abstract_audit_process_improvement_1778051452707.png',
+            icon: <FileText size={32} />,
             category: t('業務効率化 / 監査', 'Efficiency / Audit'),
             client: t('金融機関・銀行', 'Financial Institutions / Banks'),
             title: t('監査対応・業務プロセス改善', 'Audit Response & Process Improvement'),
             desc: t(
-                '3ヶ月に1度20時間を要していた監査対応作業に対し、根本的な業務プロセスの見直しを実施。関係者調整の上で代替案を提示し、当該作業をゼロベースで削減。業務効率とガバナンスの両立を達成。',
+                '3ヶ月に1度20時間を要していた監査対応作業を根本から見直し。代替案の提示により、当該作業のゼロベース削減とガバナンス強化を両立しました。',
                 'Reviewed business processes for audit response that took 20h every 3 months. Proposed alternatives and reduced the work to zero, balancing efficiency and governance.'
             ),
             tags: ['Efficiency', 'Audit', 'Process Improvement'],
-            link: ''
+            link: '',
+            details: [
+                {
+                    heading: t('監査対応業務の自動化・効率化', 'Audit Automation & Efficiency'),
+                    items: [
+                        t('既存の監査証跡取得フローの棚卸と課題抽出', 'Inventory and issue extraction of existing audit trail acquisition flows'),
+                        t('証跡取得スクリプトの作成による手作業の排除', 'Elimination of manual work by creating trail acquisition scripts'),
+                        t('監査法人・内部統制チームとの要件調整と合意形成', 'Requirement coordination and consensus building with audit firms/internal control teams'),
+                        t('手順書の整備と担当者への引き継ぎ・教育', 'Maintenance of procedures and handover/education to personnel')
+                    ]
+                },
+                {
+                    heading: t('業務プロセス再設計', 'Business Process Redesign'),
+                    items: [
+                        t('非効率な定例作業の可視化とムダの排除', 'Visualization of inefficient routine tasks and elimination of waste'),
+                        t('システムによる自動チェック機能の導入提案', 'Proposal for introduction of automated checking functions via system'),
+                        t('改善後のパフォーマンス測定と定量的な効果報告', 'Performance measurement after improvement and quantitative effect reporting')
+                    ]
+                }
+            ]
         },
         {
             id: 4,
-            image: '/images/company-profile-concept.jpg',
+            image: '/images/abstract_financial_server_infra_1778051474569.png',
+            icon: <Layout size={32} />,
             category: t('インフラ / サーバー', 'Infrastructure / Server'),
             client: t('金融機関・証券会社', 'Financial Institutions / Securities'),
             title: t('金融系サーバ設計・構築・保守', 'Financial Server Design, Build & Maintenance'),
             desc: t(
-                '銀行や証券システムのサーバ設計・構築から保守運用までを担当。自動化ツール（Ansible）を用いた構築や、VBAによる業務効率化ツール作成、脆弱性調査など、インフラエンジニアとして幅広い業務に従事。',
+                '銀行や証券システムのサーバ設計・構築から保守運用までを担当。Ansibleを用いた構築自動化やVBAによるツール作成、脆弱性調査など幅広く従事。',
                 'Handled server design, build, and maintenance for bank/securities systems. Engaged in automation (Ansible), VBA tool creation, and vulnerability research.'
             ),
             tags: ['Linux', 'Windows Server', 'Ansible', 'Oracle', 'WebLogic'],
