@@ -27,6 +27,7 @@ CREATE TABLE public.news (
     date TEXT NOT NULL,
     category TEXT NOT NULL,
     title TEXT NOT NULL,
+    content TEXT,
     url TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

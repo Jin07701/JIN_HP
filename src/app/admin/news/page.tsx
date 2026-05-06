@@ -8,6 +8,7 @@ export default function NewsAdminPage() {
     const [date, setDate] = useState('');
     const [category, setCategory] = useState('お知らせ');
     const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
     const [url, setUrl] = useState('');
     const [editingId, setEditingId] = useState<string | null>(null);
     const [saving, setSaving] = useState(false);
@@ -38,6 +39,7 @@ export default function NewsAdminPage() {
             date,
             category,
             title,
+            content: content || null,
             url: url || null
         };
 
@@ -52,11 +54,12 @@ export default function NewsAdminPage() {
 
         if (error) {
             console.error(error);
-            alert('操作に失敗しました。');
+            alert('操作に失敗しました。データベースに「content」列が追加されているか確認してください。');
         } else {
             setEditingId(null);
             setDate('');
             setTitle('');
+            setContent('');
             setUrl('');
             fetchNews();
             const statusId = editingId || 'new';
@@ -71,6 +74,7 @@ export default function NewsAdminPage() {
         setDate(n.date);
         setCategory(n.category);
         setTitle(n.title);
+        setContent(n.content || '');
         setUrl(n.url || '');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -79,6 +83,7 @@ export default function NewsAdminPage() {
         setEditingId(null);
         setDate('');
         setTitle('');
+        setContent('');
         setUrl('');
     }
 
@@ -123,7 +128,11 @@ export default function NewsAdminPage() {
                         <input type="text" value={title} onChange={e => setTitle(e.target.value)} style={{ width: '100%', padding: '8px', border: '1px solid #d1d5db', borderRadius: '4px' }} />
                     </div>
                     <div style={{ gridColumn: 'span 2' }}>
-                        <label style={{ display: 'block', marginBottom: '5px' }}>リンクURL (空でも可)</label>
+                        <label style={{ display: 'block', marginBottom: '5px' }}>内容 (中身)</label>
+                        <textarea value={content} onChange={e => setContent(e.target.value)} style={{ width: '100%', padding: '8px', border: '1px solid #d1d5db', borderRadius: '4px', minHeight: '120px' }} placeholder="記事の本文を入力してください..." />
+                    </div>
+                    <div style={{ gridColumn: 'span 2' }}>
+                        <label style={{ display: 'block', marginBottom: '5px' }}>リンクURL (空でも可 / 内容を書く場合は空でOK)</label>
                         <input type="text" value={url} onChange={e => setUrl(e.target.value)} style={{ width: '100%', padding: '8px', border: '1px solid #d1d5db', borderRadius: '4px' }} placeholder="https://..." />
                     </div>
                     <div style={{ gridColumn: 'span 2', display: 'flex', gap: '10px' }}>
@@ -147,11 +156,18 @@ export default function NewsAdminPage() {
                     {news.map(n => (
                         <div key={n.id} style={{ backgroundColor: 'white', padding: '15px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <div style={{ flex: 1 }}>
-                                <span style={{ color: '#6b7280', marginRight: '10px' }}>{n.date}</span>
-                                <span style={{ backgroundColor: '#e5e7eb', padding: '2px 8px', borderRadius: '4px', fontSize: '0.875rem', marginRight: '10px' }}>{n.category}</span>
-                                <strong>{n.title}</strong>
+                                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
+                                    <span style={{ color: '#6b7280', marginRight: '10px', fontSize: '0.9rem' }}>{n.date}</span>
+                                    <span style={{ backgroundColor: '#e5e7eb', padding: '2px 8px', borderRadius: '4px', fontSize: '0.8rem', marginRight: '10px' }}>{n.category}</span>
+                                    <strong style={{ fontSize: '1.1rem' }}>{n.title}</strong>
+                                </div>
+                                {n.content && (
+                                    <p style={{ color: '#4b5563', fontSize: '0.9rem', margin: '5px 0', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
+                                        {n.content}
+                                    </p>
+                                )}
                                 {actionStatus && actionStatus.id === n.id && (
-                                    <span style={{ marginLeft: '15px', color: actionStatus.type === 'success' ? '#10b981' : '#ef4444', fontSize: '0.875rem' }}>{actionStatus.msg}</span>
+                                    <span style={{ color: actionStatus.type === 'success' ? '#10b981' : '#ef4444', fontSize: '0.875rem' }}>{actionStatus.msg}</span>
                                 )}
                             </div>
                             <div style={{ display: 'flex', gap: '10px' }}>
