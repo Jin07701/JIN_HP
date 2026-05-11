@@ -146,14 +146,14 @@ export default function Navbar() {
                             className={`${styles.langBtn} ${language === 'en' ? styles.activeLang : ''}`}
                             onClick={() => setLanguage('en')}
                         >
-                            English
+                            EN
                         </button>
                         <span className={styles.langSeparator}>/</span>
                         <button
                             className={`${styles.langBtn} ${language === 'ja' ? styles.activeLang : ''}`}
                             onClick={() => setLanguage('ja')}
                         >
-                            日本語
+                            JP
                         </button>
                     </div>
                     <Link href="/contact" className={styles.contactBtn} aria-label={t('お問い合わせ', 'Contact')}>
