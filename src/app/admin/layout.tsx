@@ -44,13 +44,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 const res = await fetch('/api/get-ip');
                 const { ip } = await res.json();
                 
-                const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+                const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
                 const { count } = await supabase
                     .from('security_logs')
                     .select('*', { count: 'exact', head: true })
                     .eq('ip_address', ip)
                     .eq('action', 'unauthorized_admin_access')
-                    .gt('timestamp', oneHourAgo);
+                    .gt('timestamp', oneWeekAgo);
 
                 const failureCount = (count || 0) + 1;
                 const maxAttempts = 5;

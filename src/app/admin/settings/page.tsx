@@ -61,6 +61,20 @@ export default function SettingsPage() {
             // Show success state briefly
             setSuccessId(id);
             setTimeout(() => setSuccessId(null), 3000);
+
+            // Audit Log
+            try {
+                const { data: { session } } = await supabase.auth.getSession();
+                const ipRes = await fetch('/api/get-ip');
+                const { ip } = await ipRes.json();
+                const setting = settings.find(s => String(s.id) === id);
+                await supabase.from('security_logs').insert([{
+                    email: session?.user.email,
+                    ip_address: ip,
+                    action: `setting_update: ${setting?.setting_key}`,
+                    user_agent: navigator.userAgent
+                }]);
+            } catch (e) { console.error("Audit log failed", e); }
         } catch (err) {
             console.error(err);
             alert('保存に失敗しました。');
