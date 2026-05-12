@@ -4,59 +4,31 @@ import { Network, Shield, Cpu, Smartphone } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Lineup.module.css';
 
+import { useEffect, useState } from 'react';
+import { supabase } from '@/lib/supabase';
+
 export default function Lineup() {
     const { t } = useLanguage();
+    const [lineupItems, setLineupItems] = useState<any[]>([]);
 
-    const lineupItems = [
-        {
-            id: 'connect',
-            title: 'ITダイレクトマッチA',
-            subtitle: t('エンジニア・企業マッチング', 'Engineer & Company Matching'),
-            description: t(
-                '中間マージンを排除した、透明性の高いダイレクトマッチングプラットフォーム。',
-                'A highly transparent direct matching platform that eliminates intermediate margins.'
-            ),
-            icon: <Network size={40} />,
-            link: '/service#connect',
-            image: '/images/direct-connect-match.png'
-        },
-        {
-            id: 'consulting',
-            title: 'IT Consulting',
-            subtitle: t('技術コンサルティング', 'Technical Consulting'),
-            description: t(
-                'インフラからアプリまで、最新技術でお客様の課題を解決します。',
-                'Solving client challenges with the latest technology, from infrastructure to applications.'
-            ),
-            icon: <Cpu size={40} />,
-            link: '/service#consulting',
-            image: '/images/hakata-bg-clean.jpg'
-        },
-        {
-            id: 'security',
-            title: 'Security',
-            subtitle: t('セキュリティ診断・対策', 'Security Assessment & Measures'),
-            description: t(
-                '脆弱性診断から堅牢化支援まで、システムを守る包括的なセキュリティサービス。',
-                'Comprehensive security services protecting systems, from vulnerability assessment to hardening support.'
-            ),
-            icon: <Shield size={40} />,
-            link: '/service#security',
-            image: '/images/company-profile-concept.jpg'
-        },
-        {
-            id: 'app',
-            title: 'App Development',
-            subtitle: t('アプリ開発', 'App Development'),
-            description: t(
-                '「おしゃべりスイッチ」や「娯楽ブレーキ」などのiOS向け自社アプリ開発・提供。',
-                'In-house iOS app development such as "Oshaberi Switch" and "Goraku Brake".'
-            ),
-            icon: <Smartphone size={40} />,
-            link: '/service#app',
-            image: '/images/app-development.png'
+    useEffect(() => {
+        async function fetchServices() {
+            const { data } = await supabase.from('services').select('*').order('order', { ascending: true });
+            if (data) {
+                const formatted = data.map(item => ({
+                    ...item,
+                    icon: ICON_MAP[item.icon_name] ? <ICON_MAP[item.icon_name] size={40} /> : <Network size={40} />,
+                    link: `/service#${item.id}`
+                }));
+                setLineupItems(formatted);
+            }
         }
-    ];
+        fetchServices();
+    }, []);
+
+    const ICON_MAP: Record<string, any> = {
+        Network, Shield, Cpu, Smartphone
+    };
 
     return (
         <section className={styles.section} id="service">

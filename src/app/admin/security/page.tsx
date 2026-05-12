@@ -20,8 +20,8 @@ export default function SecurityAdminPage() {
 
     return (
         <div>
-            <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '20px' }}>セキュリティ監視 (不正アクセスログ)</h1>
-            <p style={{ marginBottom: '20px', color: '#ef4444' }}>※管理権限のないGoogleアカウントでログインを試みたユーザーの記録です。</p>
+            <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '20px' }}>セキュリティ監視 (アクセスログ)</h1>
+            <p style={{ marginBottom: '20px', color: '#666' }}>※管理者ログインの成功および、権限のないアカウントでのログイン試行の記録です。</p>
 
             {loading ? <p>読み込み中...</p> : (
                 <div style={{ overflowX: 'auto', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
@@ -38,9 +38,20 @@ export default function SecurityAdminPage() {
                             {logs.map(log => (
                                 <tr key={log.id} style={{ borderBottom: '1px solid #e5e7eb' }}>
                                     <td style={{ padding: '12px 15px' }}>{new Date(log.timestamp).toLocaleString()}</td>
-                                    <td style={{ padding: '12px 15px', fontWeight: 'bold', color: '#ef4444' }}>{log.email}</td>
+                                    <td style={{ padding: '12px 15px', fontWeight: 'bold', color: log.action === 'authorized_admin_login' ? '#10b981' : '#ef4444' }}>{log.email}</td>
                                     <td style={{ padding: '12px 15px', fontSize: '0.85rem', color: '#6b7280', maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={log.user_agent}>{log.user_agent}</td>
-                                    <td style={{ padding: '12px 15px' }}>{log.action}</td>
+                                    <td style={{ padding: '12px 15px' }}>
+                                        <span style={{ 
+                                            backgroundColor: log.action === 'authorized_admin_login' ? '#d1fae5' : '#fee2e2', 
+                                            color: log.action === 'authorized_admin_login' ? '#065f46' : '#991b1b',
+                                            padding: '4px 8px',
+                                            borderRadius: '4px',
+                                            fontSize: '0.75rem',
+                                            fontWeight: 'bold'
+                                        }}>
+                                            {log.action === 'authorized_admin_login' ? 'ログイン成功' : '不正アクセス試行'}
+                                        </span>
+                                    </td>
                                 </tr>
                             ))}
                             {logs.length === 0 && (

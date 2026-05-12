@@ -52,6 +52,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 router.push('/admin/login');
             } else {
                 setIsAuthorized(true);
+                // Log successful login if not already logged in this session
+                if (!sessionStorage.getItem('admin_logged_in')) {
+                    await supabase.from('security_logs').insert([{
+                        email: session.user.email,
+                        action: 'authorized_admin_login',
+                        user_agent: navigator.userAgent
+                    }]);
+                    sessionStorage.setItem('admin_logged_in', 'true');
+                }
             }
             setLoading(false);
         };
@@ -64,6 +73,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     router.push('/admin/login');
                 } else {
                     setIsAuthorized(true);
+                    // Log successful login if not already logged in this session
+                    if (typeof window !== 'undefined' && !sessionStorage.getItem('admin_logged_in')) {
+                        supabase.from('security_logs').insert([{
+                            email: session.user.email,
+                            action: 'authorized_admin_login',
+                            user_agent: navigator.userAgent
+                        }]).then(() => {
+                            sessionStorage.setItem('admin_logged_in', 'true');
+                        });
+                    }
                 }
             }
         });
@@ -85,10 +104,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
     const navItems = [
         { href: '/admin', label: 'ダッシュボード', icon: <LayoutDashboard size={20} /> },
-        { href: '/admin/settings', label: 'サイト設定', icon: <Settings size={20} /> },
+        { href: '/admin/services', label: '事業内容', icon: <FileText size={20} /> },
+        { href: '/admin/settings', label: '企業情報', icon: <Settings size={20} /> },
+        { href: '/admin/careers', label: '経歴', icon: <FileText size={20} /> },
+        { href: '/admin/projects', label: '実績紹介', icon: <FileText size={20} /> },
         { href: '/admin/news', label: 'ニュース管理', icon: <FileText size={20} /> },
-        { href: '/admin/projects', label: '実績管理', icon: <FileText size={20} /> },
-        { href: '/admin/careers', label: '経歴管理', icon: <FileText size={20} /> },
         { href: '/admin/inquiries', label: 'お問い合わせ一覧', icon: <FileText size={20} /> },
         { href: '/admin/security', label: 'セキュリティ監視', icon: <FileText size={20} /> },
     ];

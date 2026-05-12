@@ -10,6 +10,7 @@ export default function CareersAdminPage() {
     const [editingId, setEditingId] = useState<string | null>(null);
     const [saving, setSaving] = useState(false);
     const [actionStatus, setActionStatus] = useState<{id: string, type: 'success' | 'error', msg: string} | null>(null);
+    const [fetchError, setFetchError] = useState<string | null>(null);
 
     useEffect(() => {
         fetchCareers();
@@ -17,9 +18,14 @@ export default function CareersAdminPage() {
 
     async function fetchCareers() {
         setLoading(true);
+        setFetchError(null);
         const { data, error } = await supabase.from('careers').select('*').order('year', { ascending: false });
-        if (error) console.error(error);
-        else setCareers(data || []);
+        if (error) {
+            console.error(error);
+            setFetchError(error.message);
+        } else {
+            setCareers(data || []);
+        }
         setLoading(false);
     }
 
@@ -83,7 +89,7 @@ export default function CareersAdminPage() {
 
     return (
         <div>
-            <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '20px' }}>経歴・沿革管理</h1>
+            <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '20px' }}>経歴</h1>
 
             <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', marginBottom: '30px', border: editingId ? '2px solid #3b82f6' : 'none' }}>
                 <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '15px' }}>
@@ -113,6 +119,13 @@ export default function CareersAdminPage() {
                     <p style={{ marginTop: '10px', color: actionStatus.type === 'success' ? '#10b981' : '#ef4444', fontWeight: 'bold' }}>{actionStatus.msg}</p>
                 )}
             </div>
+
+            {fetchError && (
+                <div style={{ backgroundColor: '#fee2e2', color: '#b91c1c', padding: '15px', borderRadius: '8px', marginBottom: '20px', border: '1px solid #fecaca' }}>
+                    <p><strong>データ取得エラー:</strong> {fetchError}</p>
+                    <p style={{ fontSize: '0.875rem', marginTop: '5px' }}>Supabaseのテーブル権限（RLS）を確認してください。</p>
+                </div>
+            )}
 
             {loading ? <p>読み込み中...</p> : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
