@@ -24,8 +24,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         }
 
         const checkAuth = async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            let adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+            try {
+                const { data: { session }, error } = await supabase.auth.getSession();
+                
+                // If there's a session error (like invalid refresh token), treat it as not logged in
+                if (error) {
+                    console.warn("Auth session error:", error.message);
+                    if (pathname !== '/admin/login') {
+                        router.push('/admin/login');
+                        setLoading(false);
+                    }
+                    return;
+                }
+
+                let adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 
             if (!session) {
                 router.push('/admin/login');
@@ -85,6 +97,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     }]);
                     sessionStorage.setItem('admin_logged_in', 'true');
                 }
+            }
+            } catch (err) {
+                console.error("Critical auth error:", err);
+                router.push('/admin/login');
             }
             setLoading(false);
         };

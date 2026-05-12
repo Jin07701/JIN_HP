@@ -26,6 +26,17 @@ export default function ServicePage() {
             if (sData) setServices(sData);
             if (aData) setApps(aData);
             setLoading(false);
+
+            // Scroll to hash after data is loaded and DOM is updated
+            if (typeof window !== 'undefined' && window.location.hash) {
+                const hash = window.location.hash.substring(1);
+                setTimeout(() => {
+                    const element = document.getElementById(hash);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 100);
+            }
         }
         fetchData();
     }, []);
@@ -80,7 +91,9 @@ export default function ServicePage() {
                                 {/* Special section for App Development */}
                                 {(service.title === 'App Development' || service.title === 'アプリ開発') && apps.length > 0 && (
                                     <div style={{ marginTop: '3rem' }}>
-                                        <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#111827' }}>Developed Apps</h3>
+                                        <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#111827' }}>
+                                            {t('開発アプリ一覧', 'Developed Apps')}
+                                        </h3>
                                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
                                             {apps.map((app) => (
                                                 <a key={app.id} href={app.app_store_url} target="_blank" rel="noopener noreferrer" style={{ 
