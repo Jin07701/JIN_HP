@@ -7,6 +7,10 @@ import styles from './Lineup.module.css';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 
+const ICON_MAP: Record<string, any> = {
+    Network, Shield, Cpu, Smartphone
+};
+
 export default function Lineup() {
     const { t } = useLanguage();
     const [lineupItems, setLineupItems] = useState<any[]>([]);
@@ -15,20 +19,19 @@ export default function Lineup() {
         async function fetchServices() {
             const { data } = await supabase.from('services').select('*').order('order', { ascending: true });
             if (data) {
-                const formatted = data.map(item => ({
-                    ...item,
-                    icon: ICON_MAP[item.icon_name] ? <ICON_MAP[item.icon_name] size={40} /> : <Network size={40} />,
-                    link: `/service#${item.id}`
-                }));
+                const formatted = data.map(item => {
+                    const IconComponent = ICON_MAP[item.icon_name] || Network;
+                    return {
+                        ...item,
+                        icon: <IconComponent size={40} />,
+                        link: `/service#${item.id}`
+                    };
+                });
                 setLineupItems(formatted);
             }
         }
         fetchServices();
     }, []);
-
-    const ICON_MAP: Record<string, any> = {
-        Network, Shield, Cpu, Smartphone
-    };
 
     return (
         <section className={styles.section} id="service">
