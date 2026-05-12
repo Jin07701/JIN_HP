@@ -1,47 +1,66 @@
 "use client";
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-
+import { supabase } from '@/lib/supabase';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './Footer.module.css';
 
 export default function Footer() {
     const { t } = useLanguage();
+    const [sections, setSections] = useState<any[]>([]);
+
+    useEffect(() => {
+        async function fetchFooter() {
+            const { data } = await supabase.from('footer_sections').select('*, footer_links(*)').order('order', { ascending: true });
+            if (data && data.length > 0) setSections(data);
+        }
+        fetchFooter();
+    }, []);
+
+    const defaultSections = [
+        { title: t('事業内容', 'Our Services'), footer_links: [
+            { label: t('ラインナップ', 'Lineup'), url: '/service' },
+            { label: t('ITコンサルティング', 'IT Consulting'), url: '/service#consulting' },
+            { label: t('セキュリティ診断', 'Security Audit'), url: '/service#security' }
+        ]},
+        { title: t('企業情報', 'Company'), footer_links: [
+            { label: t('会社概要', 'About Us'), url: '/company' },
+            { label: t('代表メッセージ', 'Message'), url: '/company#message' },
+            { label: t('ニュース', 'News'), url: '/news' }
+        ]},
+        { title: t('お問い合わせ', 'Contact'), footer_links: [
+            { label: t('お問い合わせフォーム', 'Contact Form'), url: '/contact' },
+            { label: t('よくあるご質問', 'FAQ'), url: '/contact#faq' }
+        ]},
+        { title: t('関連リンク', 'Related Links'), footer_links: [
+            { label: 'Note (公式)', url: 'https://note.com/jin_ai_system/all' },
+            { label: t('管理者ログイン', 'Admin Login'), url: '/admin' }
+        ]}
+    ];
+
+    const displaySections = sections.length > 0 ? sections : defaultSections;
 
     return (
         <footer className={styles.footer}>
             <div className={styles.container}>
                 {/* Top Section: Links */}
                 <div className={styles.linkSection}>
-                    <div className={styles.column}>
-                        <h3 className={styles.colTitle}>{t('事業内容', 'Our Services')}</h3>
-                        <ul className={styles.linkList}>
-                            <li><Link href="/service">{t('ラインナップ', 'Lineup')}</Link></li>
-                            <li><Link href="/service#consulting">{t('ITコンサルティング', 'IT Consulting')}</Link></li>
-                            <li><Link href="/service#security">{t('セキュリティ診断', 'Security Audit')}</Link></li>
-                        </ul>
-                    </div>
-                    <div className={styles.column}>
-                        <h3 className={styles.colTitle}>{t('企業情報', 'Company')}</h3>
-                        <ul className={styles.linkList}>
-                            <li><Link href="/company">{t('会社概要', 'About Us')}</Link></li>
-                            <li><Link href="/company#message">{t('代表メッセージ', 'Message')}</Link></li>
-                            <li><Link href="/news">{t('ニュース', 'News')}</Link></li>
-                        </ul>
-                    </div>
-                    <div className={styles.column}>
-                        <h3 className={styles.colTitle}>{t('お問い合わせ', 'Contact')}</h3>
-                        <ul className={styles.linkList}>
-                            <li><Link href="/contact">{t('お問い合わせフォーム', 'Contact Form')}</Link></li>
-                            <li><Link href="/contact#faq">{t('よくあるご質問', 'FAQ')}</Link></li>
-                        </ul>
-                    </div>
-                    <div className={styles.column}>
-                        <h3 className={styles.colTitle}>{t('関連リンク', 'Related Links')}</h3>
-                        <ul className={styles.linkList}>
-                            <li><a href="https://note.com/jin_ai_system/all" target="_blank" rel="noopener noreferrer">Note (公式)</a></li>
-                            <li><Link href="/admin">{t('管理者ログイン', 'Admin Login')}</Link></li>
-                        </ul>
-                    </div>
+                    {displaySections.map((section, idx) => (
+                        <div key={idx} className={styles.column}>
+                            <h3 className={styles.colTitle}>{section.title}</h3>
+                            <ul className={styles.linkList}>
+                                {section.footer_links?.sort((a: any, b: any) => a.order - b.order).map((link: any, lIdx: number) => (
+                                    <li key={lIdx}>
+                                        {link.url.startsWith('http') ? (
+                                            <a href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a>
+                                        ) : (
+                                            <Link href={link.url}>{link.label}</Link>
+                                        )}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
                 </div>
 
                 {/* Bottom Section: Brand & Copyright */}

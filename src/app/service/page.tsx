@@ -16,15 +16,18 @@ const ICON_MAP: Record<string, any> = {
 
 export default function ServicePage() {
     const [services, setServices] = useState<any[]>([]);
+    const [apps, setApps] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        async function fetchServices() {
-            const { data } = await supabase.from('services').select('*').order('order', { ascending: true });
-            if (data) setServices(data);
+        async function fetchData() {
+            const { data: sData } = await supabase.from('services').select('*').order('order', { ascending: true });
+            const { data: aData } = await supabase.from('apps').select('*').order('order', { ascending: true });
+            if (sData) setServices(sData);
+            if (aData) setApps(aData);
             setLoading(false);
         }
-        fetchServices();
+        fetchData();
     }, []);
 
     const breadcrumbs = [{ label: '事業内容', href: '' }];
@@ -71,6 +74,41 @@ export default function ServicePage() {
                                         }}>
                                             サービスサイトへ <ExternalLink size={16} />
                                         </a>
+                                    </div>
+                                )}
+
+                                {/* Special section for App Development */}
+                                {(service.title === 'App Development' || service.title === 'アプリ開発') && apps.length > 0 && (
+                                    <div style={{ marginTop: '3rem' }}>
+                                        <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#111827' }}>Developed Apps</h3>
+                                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
+                                            {apps.map((app) => (
+                                                <a key={app.id} href={app.app_store_url} target="_blank" rel="noopener noreferrer" style={{ 
+                                                    display: 'flex', 
+                                                    alignItems: 'center', 
+                                                    gap: '15px', 
+                                                    padding: '15px', 
+                                                    backgroundColor: '#f9fafb', 
+                                                    borderRadius: '16px', 
+                                                    textDecoration: 'none', 
+                                                    color: 'inherit',
+                                                    transition: 'transform 0.2s, background-color 0.2s'
+                                                }} onMouseOver={(e) => {
+                                                    e.currentTarget.style.backgroundColor = '#f3f4f6';
+                                                    e.currentTarget.style.transform = 'translateY(-2px)';
+                                                }} onMouseOut={(e) => {
+                                                    e.currentTarget.style.backgroundColor = '#f9fafb';
+                                                    e.currentTarget.style.transform = 'none';
+                                                }}>
+                                                    <img src={app.icon_url || '/images/default-app.png'} alt={app.name} style={{ width: '64px', height: '64px', borderRadius: '14px', objectFit: 'cover', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }} />
+                                                    <div style={{ flex: 1 }}>
+                                                        <h4 style={{ fontWeight: 'bold', fontSize: '1rem', marginBottom: '4px' }}>{app.name}</h4>
+                                                        <p style={{ fontSize: '0.8rem', color: '#6b7280', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{app.description}</p>
+                                                    </div>
+                                                    <div style={{ backgroundColor: '#e5e7eb', color: '#2563eb', padding: '4px 12px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: 'bold' }}>GET</div>
+                                                </a>
+                                            ))}
+                                        </div>
                                     </div>
                                 )}
                             </div>

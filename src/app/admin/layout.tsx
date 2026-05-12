@@ -132,11 +132,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const navItems = [
         { href: '/admin', label: 'ダッシュボード', icon: <LayoutDashboard size={20} /> },
         { href: '/admin/services', label: '事業内容', icon: <FileText size={20} /> },
+        { href: '/admin/apps', label: 'アプリ管理', icon: <Smartphone size={20} /> },
         { href: '/admin/settings', label: '企業情報', icon: <Settings size={20} /> },
         { href: '/admin/careers', label: '経歴', icon: <FileText size={20} /> },
         { href: '/admin/projects', label: '実績紹介', icon: <FileText size={20} /> },
         { href: '/admin/news', label: 'ニュース管理', icon: <FileText size={20} /> },
         { href: '/admin/inquiries', label: 'お問い合わせ一覧', icon: <FileText size={20} /> },
+        { href: '/admin/footer', label: 'フッター管理', icon: <LayoutDashboard size={20} /> },
         { href: '/admin/security', label: 'セキュリティ監視', icon: <FileText size={20} /> },
     ];
 
