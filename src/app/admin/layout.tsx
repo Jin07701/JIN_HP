@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Settings, FileText, LayoutDashboard, LogOut } from 'lucide-react';
+import { Settings, FileText, LayoutDashboard, LogOut, Smartphone } from 'lucide-react';
 import styles from './AdminLayout.module.css';
 import { supabase } from '@/lib/supabase';
 import { useEffect, useState } from 'react';

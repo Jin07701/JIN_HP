@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabase';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SubpageHeader from '@/components/SubpageHeader';
+import { useLanguage } from '@/context/LanguageContext';
 import styles from './page.module.css';
 import { Network, Shield, Cpu, Smartphone, ExternalLink } from 'lucide-react';
 
@@ -15,6 +16,7 @@ const ICON_MAP: Record<string, any> = {
 };
 
 export default function ServicePage() {
+    const { t } = useLanguage();
     const [services, setServices] = useState<any[]>([]);
     const [apps, setApps] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
