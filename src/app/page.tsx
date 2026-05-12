@@ -33,17 +33,26 @@ export default async function Home() {
   const { data: projectsData } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
   const { data: careersData } = await supabase.from('careers').select('*').order('year', { ascending: false });
 
+  // Fetch section visibility
+  const { data: sectionsData } = await supabase.from('site_sections').select('*');
+  const visibility: Record<string, boolean> = {};
+  if (sectionsData) {
+    sectionsData.forEach(s => {
+      visibility[s.section_key] = s.is_visible;
+    });
+  }
+
   return (
     <>
       <Navbar />
       <main style={{ paddingTop: '80px' }}> {/* Add padding for fixed navbar */}
         <Hero settings={settings} />
         <Mission />
-        <Lineup />
+        {visibility.service !== false && <Lineup />}
         <CompanyProfile settings={settings} />
-        <Career careers={careersData || []} />
-        <Projects projects={projectsData || []} />
-        <News news={newsData || []} />
+        {visibility.career !== false && <Career careers={careersData || []} />}
+        {visibility.projects !== false && <Projects projects={projectsData || []} />}
+        {visibility.news !== false && <News news={newsData || []} />}
         <Contact />
       </main>
       <Footer />

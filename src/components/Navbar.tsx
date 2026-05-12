@@ -15,29 +15,50 @@ export default function Navbar() {
     const pathname = usePathname();
     const router = useRouter();
 
-    const navItems = useMemo(() => [
-        { id: 'top', label: t('トップ', 'Top') },
-        {
-            id: 'service',
-            label: t('事業内容', 'Service'),
-            subItems: [
-                { id: 'service', label: t('ラインナップ', 'Lineup') },
-                { id: 'consulting', label: t('ITコンサルティング', 'IT Consulting') },
-                { id: 'security', label: t('セキュリティ診断', 'Security') }
-            ]
-        },
-        {
-            id: 'company',
-            label: t('企業情報', 'Company'),
-            subItems: [
-                { id: 'company', label: t('会社概要', 'About Us') },
-                { id: 'message', label: t('代表メッセージ', 'Message') },
-                { id: 'news', label: t('ニュース', 'News') }
-            ]
-        },
-        { id: 'career', label: t('経歴', 'Career') },
-        { id: 'projects', label: t('実績紹介', 'Projects') },
-    ], [t]);
+    const [sections, setSections] = useState<any[]>([]);
+
+    useEffect(() => {
+        async function fetchSections() {
+            const { data } = await supabase.from('site_sections').select('*');
+            if (data) setSections(data);
+        }
+        fetchSections();
+    }, []);
+
+    const navItems = useMemo(() => {
+        const items = [
+            { id: 'top', label: t('トップ', 'Top') },
+            {
+                id: 'service',
+                label: t('事業内容', 'Service'),
+                subItems: [
+                    { id: 'service', label: t('ラインナップ', 'Lineup') },
+                    { id: 'consulting', label: t('ITコンサルティング', 'IT Consulting') },
+                    { id: 'security', label: t('セキュリティ診断', 'Security') }
+                ]
+            },
+            {
+                id: 'company',
+                label: t('企業情報', 'Company'),
+                subItems: [
+                    { id: 'company', label: t('会社概要', 'About Us') },
+                    { id: 'message', label: t('代表メッセージ', 'Message') },
+                    { id: 'news', label: t('ニュース', 'News') }
+                ]
+            },
+            { id: 'career', label: t('経歴', 'Career') },
+            { id: 'projects', label: t('実績紹介', 'Projects') },
+        ];
+
+        // Filter based on database visibility
+        if (sections.length > 0) {
+            return items.filter(item => {
+                const section = sections.find(s => s.section_key === item.id);
+                return section ? section.is_visible : true;
+            });
+        }
+        return items;
+    }, [t, sections]);
 
     const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
         e.preventDefault();

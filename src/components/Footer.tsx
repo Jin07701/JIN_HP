@@ -9,12 +9,16 @@ export default function Footer() {
     const { t } = useLanguage();
     const [sections, setSections] = useState<any[]>([]);
 
+    const [siteSections, setSiteSections] = useState<any[]>([]);
+
     useEffect(() => {
-        async function fetchFooter() {
-            const { data } = await supabase.from('footer_sections').select('*, footer_links(*)').order('order', { ascending: true });
-            if (data && data.length > 0) setSections(data);
+        async function fetchData() {
+            const { data: fData } = await supabase.from('footer_sections').select('*, footer_links(*)').order('order', { ascending: true });
+            const { data: sData } = await supabase.from('site_sections').select('*');
+            if (fData && fData.length > 0) setSections(fData);
+            if (sData) setSiteSections(sData);
         }
-        fetchFooter();
+        fetchData();
     }, []);
 
     const defaultSections = [
@@ -38,7 +42,26 @@ export default function Footer() {
         ]}
     ];
 
-    const displaySections = sections.length > 0 ? sections : defaultSections;
+    const displaySections = (sections.length > 0 ? sections : defaultSections).filter(section => {
+        // Find matching global section visibility
+        const keyMap: Record<string, string> = {
+            '事業内容': 'service',
+            'Business Details': 'service',
+            'Our Services': 'service',
+            '経歴': 'career',
+            'Career': 'career',
+            '実績紹介': 'projects',
+            'Projects': 'projects',
+            'ニュース': 'news',
+            'News': 'news'
+        };
+        const key = keyMap[section.title];
+        if (key && siteSections.length > 0) {
+            const s = siteSections.find(ss => ss.section_key === key);
+            return s ? s.is_visible : true;
+        }
+        return true;
+    });
 
     return (
         <footer className={styles.footer}>
