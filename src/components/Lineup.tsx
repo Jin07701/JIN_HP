@@ -44,8 +44,8 @@ export default function Lineup() {
                     {lineupItems.map((item) => (
                         <Link href={item.link} key={item.id} className={styles.card}>
                             <div className={styles.imageWrapper}>
-                                {item.image ? (
-                                    <img src={item.image} alt={item.title} className={styles.image} />
+                                {item.image_url ? (
+                                    <img src={item.image_url} alt={item.title} className={styles.image} />
                                 ) : (
                                     <div className={styles.placeholderImage}>
                                         {item.icon}
