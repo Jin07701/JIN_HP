@@ -40,22 +40,46 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             }
 
             if (!adminEmail || session.user.email?.toLowerCase() !== adminEmail.toLowerCase()) {
+                // Get IP and count failures
+                const res = await fetch('/api/get-ip');
+                const { ip } = await res.json();
+                
+                const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+                const { count } = await supabase
+                    .from('security_logs')
+                    .select('*', { count: 'exact', head: true })
+                    .eq('ip_address', ip)
+                    .eq('action', 'unauthorized_admin_access')
+                    .gt('timestamp', oneHourAgo);
+
+                const failureCount = (count || 0) + 1;
+                const maxAttempts = 5;
+
                 // Log unauthorized access
                 await supabase.from('security_logs').insert([{
                     email: session.user.email,
+                    ip_address: ip,
                     action: 'unauthorized_admin_access',
                     user_agent: navigator.userAgent
                 }]);
                 
                 await supabase.auth.signOut();
-                alert('不正なアクセスとして記録されました。許可されたアカウントでログインしてください。');
+                if (failureCount >= maxAttempts) {
+                    alert(`不正なアクセスが${maxAttempts}回連続したため、制限されました。正しいアカウントでログインし直してください。`);
+                } else {
+                    alert(`アクセス権限がありません。許可されたアカウントでログインしてください。（残り試行回数: ${maxAttempts - failureCount}回）`);
+                }
                 router.push('/admin/login');
             } else {
                 setIsAuthorized(true);
                 // Log successful login if not already logged in this session
                 if (!sessionStorage.getItem('admin_logged_in')) {
+                    const res = await fetch('/api/get-ip');
+                    const { ip } = await res.json();
+                    
                     await supabase.from('security_logs').insert([{
                         email: session.user.email,
+                        ip_address: ip,
                         action: 'authorized_admin_login',
                         user_agent: navigator.userAgent
                     }]);
@@ -75,12 +99,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     setIsAuthorized(true);
                     // Log successful login if not already logged in this session
                     if (typeof window !== 'undefined' && !sessionStorage.getItem('admin_logged_in')) {
-                        supabase.from('security_logs').insert([{
-                            email: session.user.email,
-                            action: 'authorized_admin_login',
-                            user_agent: navigator.userAgent
-                        }]).then(() => {
-                            sessionStorage.setItem('admin_logged_in', 'true');
+                        fetch('/api/get-ip').then(res => res.json()).then(data => {
+                            supabase.from('security_logs').insert([{
+                                email: session.user.email,
+                                ip_address: data.ip,
+                                action: 'authorized_admin_login',
+                                user_agent: navigator.userAgent
+                            }]).then(() => {
+                                sessionStorage.setItem('admin_logged_in', 'true');
+                            });
                         });
                     }
                 }

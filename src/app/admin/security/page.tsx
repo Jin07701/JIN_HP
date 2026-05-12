@@ -39,7 +39,11 @@ export default function SecurityAdminPage() {
                                 <tr key={log.id} style={{ borderBottom: '1px solid #e5e7eb' }}>
                                     <td style={{ padding: '12px 15px' }}>{new Date(log.timestamp).toLocaleString()}</td>
                                     <td style={{ padding: '12px 15px', fontWeight: 'bold', color: log.action === 'authorized_admin_login' ? '#10b981' : '#ef4444' }}>{log.email}</td>
-                                    <td style={{ padding: '12px 15px', fontSize: '0.85rem', color: '#6b7280', maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={log.user_agent}>{log.user_agent}</td>
+                                    <td style={{ padding: '12px 15px', fontSize: '0.85rem', color: '#6b7280', maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={`IP: ${log.ip_address}\nUA: ${log.user_agent}`}>
+                                        <span style={{ color: '#374151', fontWeight: 'bold' }}>{log.ip_address || '不明'}</span>
+                                        <br />
+                                        <span style={{ fontSize: '0.75rem' }}>{log.user_agent}</span>
+                                    </td>
                                     <td style={{ padding: '12px 15px' }}>
                                         <span style={{ 
                                             backgroundColor: log.action === 'authorized_admin_login' ? '#d1fae5' : '#fee2e2', 
