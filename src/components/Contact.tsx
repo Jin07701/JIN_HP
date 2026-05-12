@@ -12,7 +12,8 @@ export default function Contact() {
         name: '',
         email: '',
         category: '',
-        message: ''
+        message: '',
+        website: '' // Honeypot field
     });
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -29,7 +30,7 @@ export default function Contact() {
             if (response.ok) {
                 setFormStatus('success');
                 setIsSubmitted(true);
-                setFormData({ name: '', email: '', category: '', message: '' });
+                setFormData({ name: '', email: '', category: '', message: '', website: '' });
             } else {
                 setFormStatus('error');
             }
@@ -72,6 +73,17 @@ export default function Contact() {
                                     {t('送信に失敗しました。時間をおいて再度お試しください。', 'Failed to send. Please try again later.')}
                                 </div>
                             )}
+                            {/* Honeypot field - hidden from users */}
+                            <div style={{ display: 'none' }} aria-hidden="true">
+                                <input
+                                    type="text"
+                                    id="website"
+                                    value={formData.website}
+                                    onChange={handleChange}
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                />
+                            </div>
                             <div className={styles.group}>
                                 <label htmlFor="name">{t('お名前', 'Name')}</label>
                                 <input

@@ -112,8 +112,13 @@ export default function NewsAdminPage() {
                 </h2>
                 <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '15px', gridTemplateColumns: '1fr 1fr' }}>
                     <div>
-                        <label style={{ display: 'block', marginBottom: '5px' }}>日付 (例: 2026.04.01)</label>
-                        <input type="text" value={date} onChange={e => setDate(e.target.value)} style={{ width: '100%', padding: '8px', border: '1px solid #d1d5db', borderRadius: '4px' }} placeholder="2026.05.06" />
+                        <label style={{ display: 'block', marginBottom: '5px' }}>日付</label>
+                        <input 
+                            type="date" 
+                            value={date.includes('.') ? date.split('.').join('-') : date} 
+                            onChange={e => setDate(e.target.value.split('-').join('.'))} 
+                            style={{ width: '100%', padding: '8px', border: '1px solid #d1d5db', borderRadius: '4px' }} 
+                        />
                     </div>
                     <div>
                         <label style={{ display: 'block', marginBottom: '5px' }}>カテゴリ</label>

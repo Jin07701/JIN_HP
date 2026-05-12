@@ -15,7 +15,13 @@ function cleanInput(str: unknown): string {
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        let { name, email, category, message } = body;
+        let { name, email, category, message, website } = body;
+
+        // 0. Honeypot check
+        if (website) {
+            console.warn('Honeypot triggered');
+            return NextResponse.json({ error: 'Spam detected' }, { status: 400 });
+        }
 
         // 1. Validation
         if (!name || !email || !message) {
@@ -34,8 +40,7 @@ export async function POST(request: Request) {
         message = cleanInput(message);
 
         // 2. Simple Rate Limiting (In-Memory)
-        // Note: in serverless/Edge, this Map might reset often, but helps against basic burst scripts.
-        const ip = 'client-ip-placeholder'; // In real app, get from headers if needed
+        const ip = request.headers.get('x-forwarded-for') || 'unknown';
 
         const now = Date.now();
         const userRecord = ipRequestMap.get(ip) || { count: 0, lastRequest: 0 };
