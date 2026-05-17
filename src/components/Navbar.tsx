@@ -139,7 +139,7 @@ export default function Navbar() {
                         }}
                     >
                         <div className={styles.logoText}>
-                            ARISTA<span style={{ fontSize: '0.45em', marginLeft: '8px', letterSpacing: '0.05em', opacity: 0.8, fontWeight: 500 }}>アリスタ</span>
+                            <div className="whitespace-nowrap">ARISTA<span style={{ fontSize: '0.45em', marginLeft: '8px', letterSpacing: '0.05em', opacity: 0.8, fontWeight: 500 }}>アリスタ</span></div>
                         </div>
                     </Link>
                 </div>
