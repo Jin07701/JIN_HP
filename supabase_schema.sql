@@ -139,3 +139,33 @@ ALTER TABLE public.apps ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Enable read access for all users" ON public.apps FOR SELECT USING (true);
 -- CREATE POLICY "Enable write access for all users" ON public.apps FOR ALL USING (true);
 
+-- site_sections: Table for managing section visibility
+CREATE TABLE IF NOT EXISTS public.site_sections (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    section_key TEXT UNIQUE NOT NULL,
+    title_ja TEXT NOT NULL,
+    is_visible BOOLEAN DEFAULT true,
+    "order" INTEGER DEFAULT 0
+);
+ALTER TABLE public.site_sections ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Enable read access for all users" ON public.site_sections FOR SELECT USING (true);
+
+-- footer_sections: Table for managing footer categories
+CREATE TABLE IF NOT EXISTS public.footer_sections (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title TEXT NOT NULL,
+    "order" INTEGER DEFAULT 0
+);
+ALTER TABLE public.footer_sections ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Enable read access for all users" ON public.footer_sections FOR SELECT USING (true);
+
+-- footer_links: Table for managing footer links
+CREATE TABLE IF NOT EXISTS public.footer_links (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    section_id UUID REFERENCES public.footer_sections(id) ON DELETE CASCADE,
+    label TEXT NOT NULL,
+    url TEXT NOT NULL,
+    "order" INTEGER DEFAULT 0
+);
+ALTER TABLE public.footer_links ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Enable read access for all users" ON public.footer_links FOR SELECT USING (true);
