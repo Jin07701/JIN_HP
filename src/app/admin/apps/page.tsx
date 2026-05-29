@@ -40,6 +40,7 @@ export default function AdminAppsPage() {
             name: '新規アプリ',
             description: 'アプリの説明文',
             app_store_url: 'https://apps.apple.com/...',
+            web_url: 'https://...',
             order: apps.length + 1,
             icon_url: '/images/default-app.png'
         }]);
@@ -87,6 +88,14 @@ export default function AdminAppsPage() {
                                     onBlur={(e) => handleSave(app.id, { app_store_url: e.target.value })}
                                 />
                             </div>
+                            <div className={styles.field}>
+                                <label className={styles.label}>Web URL</label>
+                                <input 
+                                    className={styles.input}
+                                    defaultValue={app.web_url}
+                                    onBlur={(e) => handleSave(app.id, { web_url: e.target.value })}
+                                />
+                            </div>
                             <div className={`${styles.field} ${styles.fullWidth}`}>
                                 <label className={styles.label}>説明文</label>
                                 <textarea 
@@ -106,11 +115,18 @@ export default function AdminAppsPage() {
                         </div>
 
                         <div className={styles.cardFooter}>
-                            {app.app_store_url && (
-                                <a href={app.app_store_url} target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.875rem', textDecoration: 'none', marginRight: 'auto' }}>
-                                    ストアで見る <ExternalLink size={14} />
-                                </a>
-                            )}
+                            <div style={{ display: 'flex', gap: '12px', marginRight: 'auto' }}>
+                                {app.app_store_url && (
+                                    <a href={app.app_store_url} target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.875rem', textDecoration: 'none' }}>
+                                        App Store <ExternalLink size={14} />
+                                    </a>
+                                )}
+                                {app.web_url && (
+                                    <a href={app.web_url} target="_blank" rel="noopener noreferrer" style={{ color: '#10b981', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.875rem', textDecoration: 'none' }}>
+                                        Webで開く <ExternalLink size={14} />
+                                    </a>
+                                )}
+                            </div>
                             <button 
                                 onClick={() => handleDelete(app.id)}
                                 className={styles.deleteButton}

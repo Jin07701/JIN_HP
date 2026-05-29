@@ -49,6 +49,7 @@ export default function Navbar() {
             },
             { id: 'career', label: t('経歴', 'Career') },
             { id: 'projects', label: t('実績紹介', 'Projects') },
+            { id: 'apps', label: t('アプリ', 'Apps') },
         ];
 
         // Filter based on database visibility
@@ -66,6 +67,11 @@ export default function Navbar() {
 
         // Close menu if open
         setIsMenuOpen(false);
+
+        if (id === 'apps') {
+            router.push('/apps');
+            return;
+        }
 
         if (pathname !== '/') {
             router.push(`/#${id}`);
@@ -90,6 +96,11 @@ export default function Navbar() {
         // If we are on /projects, set active to 'projects'
         if (pathname.includes('/projects')) {
             setActiveSection('projects'); // eslint-disable-line
+            return;
+        }
+
+        if (pathname.includes('/apps')) {
+            setActiveSection('apps');
             return;
         }
 

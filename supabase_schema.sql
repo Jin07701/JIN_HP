@@ -50,19 +50,21 @@ CREATE TABLE public.inquiries (
 
 ALTER TABLE public.site_settings ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Enable read access for all users" ON public.site_settings FOR SELECT USING (true);
-CREATE POLICY "Enable write access for all users" ON public.site_settings FOR UPDATE USING (true); -- FOR DEMO PURPOSES. Restrict in production.
-CREATE POLICY "Enable insert access for all users" ON public.site_settings FOR INSERT WITH CHECK (true);
+-- FOR DEMO PURPOSES ONLY. IN PRODUCTION, REMOVE THESE TO RESTRICT WRITE ACCESS.
+-- CREATE POLICY "Enable write access for all users" ON public.site_settings FOR UPDATE USING (true);
+-- CREATE POLICY "Enable insert access for all users" ON public.site_settings FOR INSERT WITH CHECK (true);
 
 ALTER TABLE public.news ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Enable read access for all users" ON public.news FOR SELECT USING (true);
-CREATE POLICY "Enable write access for all users" ON public.news FOR ALL USING (true); -- FOR DEMO PURPOSES. Restrict in production.
+-- FOR DEMO PURPOSES ONLY.
+-- CREATE POLICY "Enable write access for all users" ON public.news FOR ALL USING (true);
 
 ALTER TABLE public.inquiries ENABLE ROW LEVEL SECURITY;
 -- Allow anyone to insert (submit the contact form)
 CREATE POLICY "Enable insert access for anon users" ON public.inquiries FOR INSERT WITH CHECK (true);
 -- Only allow viewing/editing via admin panel (simplified for now, allow all for demo)
-CREATE POLICY "Enable read access for all users" ON public.inquiries FOR SELECT USING (true);
-CREATE POLICY "Enable write access for all users" ON public.inquiries FOR UPDATE USING (true);
+-- CREATE POLICY "Enable read access for all users" ON public.inquiries FOR SELECT USING (true);
+-- CREATE POLICY "Enable write access for all users" ON public.inquiries FOR UPDATE USING (true);
 
 -- projects: Table for Projects/Achievements
 CREATE TABLE public.projects (
@@ -81,7 +83,7 @@ INSERT INTO public.projects (title, category, description, image_url) VALUES
 
 ALTER TABLE public.projects ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Enable read access for all users" ON public.projects FOR SELECT USING (true);
-CREATE POLICY "Enable write access for all users" ON public.projects FOR ALL USING (true);
+-- CREATE POLICY "Enable write access for all users" ON public.projects FOR ALL USING (true);
 
 -- careers: Table for Careers/History
 CREATE TABLE public.careers (
@@ -96,7 +98,7 @@ INSERT INTO public.careers (year, event) VALUES
 
 ALTER TABLE public.careers ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Enable read access for all users" ON public.careers FOR SELECT USING (true);
-CREATE POLICY "Enable write access for all users" ON public.careers FOR ALL USING (true);
+-- CREATE POLICY "Enable write access for all users" ON public.careers FOR ALL USING (true);
 
 -- security_logs: Table for blocked access tracking
 CREATE TABLE public.security_logs (
@@ -110,13 +112,30 @@ CREATE TABLE public.security_logs (
 
 ALTER TABLE public.security_logs ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Enable insert for anon users" ON public.security_logs FOR INSERT WITH CHECK (true);
-CREATE POLICY "Enable read for admin users" ON public.security_logs FOR SELECT USING (true);
+-- CREATE POLICY "Enable read for admin users" ON public.security_logs FOR SELECT USING (true);
 -- Storage (画像アップロード用バケットの作成)
 -- NOTE: Please run this manually in the Supabase SQL Editor if buckets are not created
 INSERT INTO storage.buckets (id, name, public) VALUES ('public-assets', 'public-assets', true) ON CONFLICT DO NOTHING;
 
 -- Storage Policies
 CREATE POLICY "Public Access" ON storage.objects FOR SELECT USING ( bucket_id = 'public-assets' );
-CREATE POLICY "Auth Insert" ON storage.objects FOR INSERT WITH CHECK ( bucket_id = 'public-assets' );
-CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE USING ( bucket_id = 'public-assets' );
-CREATE POLICY "Auth Delete" ON storage.objects FOR DELETE USING ( bucket_id = 'public-assets' );
+-- CREATE POLICY "Auth Insert" ON storage.objects FOR INSERT WITH CHECK ( bucket_id = 'public-assets' );
+-- CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE USING ( bucket_id = 'public-assets' );
+-- CREATE POLICY "Auth Delete" ON storage.objects FOR DELETE USING ( bucket_id = 'public-assets' );
+
+-- apps: Table for App portfolio
+CREATE TABLE public.apps (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name TEXT NOT NULL,
+    description TEXT,
+    app_store_url TEXT,
+    web_url TEXT,
+    icon_url TEXT,
+    "order" INTEGER DEFAULT 0,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+ALTER TABLE public.apps ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Enable read access for all users" ON public.apps FOR SELECT USING (true);
+-- CREATE POLICY "Enable write access for all users" ON public.apps FOR ALL USING (true);
+
