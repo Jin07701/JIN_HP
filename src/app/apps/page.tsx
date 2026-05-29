@@ -8,7 +8,8 @@ import styles from './Apps.module.css';
 export const revalidate = 0;
 
 export default async function AppsPage() {
-    const { data: appsData } = await supabase.from('apps').select('*').order('order', { ascending: true });
+    let { data: appsData } = await supabase.from('apps').select('*').order('order', { ascending: true });
+    appsData = appsData?.filter((app: any) => app.is_visible !== false) || [];
     const breadcrumbs = [{ label: 'アプリ一覧', href: '' }];
 
     return (

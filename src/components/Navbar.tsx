@@ -141,10 +141,12 @@ export default function Navbar() {
                         href="/"
                         className={styles.logoLink}
                         onClick={(e) => {
+                            e.preventDefault();
                             if (pathname === '/') {
-                                e.preventDefault();
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
                                 setActiveSection('top');
+                            } else {
+                                router.push('/');
                             }
                             setIsMenuOpen(false);
                         }}

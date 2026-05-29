@@ -131,6 +131,7 @@ CREATE TABLE public.apps (
     app_store_url TEXT,
     web_url TEXT,
     icon_url TEXT,
+    is_visible BOOLEAN DEFAULT true,
     "order" INTEGER DEFAULT 0,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

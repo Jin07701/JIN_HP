@@ -68,7 +68,18 @@ export default function AdminAppsPage() {
                                 </div>
                                 <h2 style={{ fontSize: '1.25rem', fontWeight: '700' }}>{app.name || '無題のアプリ'}</h2>
                             </div>
-                            {saving === app.id && <span className={styles.savingBadge}>保存中...</span>}
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                                <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+                                    <span style={{ fontSize: '0.875rem', color: '#4b5563', fontWeight: '600' }}>表示する</span>
+                                    <input 
+                                        type="checkbox" 
+                                        checked={app.is_visible !== false} 
+                                        onChange={(e) => handleSave(app.id, { is_visible: e.target.checked })}
+                                        style={{ width: '18px', height: '18px', accentColor: '#10b981', cursor: 'pointer' }}
+                                    />
+                                </label>
+                                {saving === app.id && <span className={styles.savingBadge}>保存中...</span>}
+                            </div>
                         </div>
 
                         <div className={styles.formGrid}>

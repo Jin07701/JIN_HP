@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
-import { Settings, FileText, Smartphone, Eye, EyeOff, LayoutDashboard, MessageSquare } from 'lucide-react';
+import { Settings, FileText, Smartphone, Eye, EyeOff, LayoutDashboard, MessageSquare, Briefcase, Award, Shield, Layers } from 'lucide-react';
 import styles from './services/AdminServices.module.css';
 
 export default function AdminDashboard() {
@@ -32,6 +32,11 @@ export default function AdminDashboard() {
         { href: '/admin/news', label: 'ニュース投稿', icon: <FileText size={24} />, color: '#10b981' },
         { href: '/admin/apps', label: 'アプリ管理', icon: <Smartphone size={24} />, color: '#8b5cf6' },
         { href: '/admin/inquiries', label: 'お問い合わせ確認', icon: <MessageSquare size={24} />, color: '#f59e0b' },
+        { href: '/admin/projects', label: '実績管理', icon: <LayoutDashboard size={24} />, color: '#06b6d4' },
+        { href: '/admin/careers', label: '経歴管理', icon: <Award size={24} />, color: '#ec4899' },
+        { href: '/admin/services', label: '事業内容管理', icon: <Briefcase size={24} />, color: '#14b8a6' },
+        { href: '/admin/footer', label: 'フッター管理', icon: <Layers size={24} />, color: '#6366f1' },
+        { href: '/admin/security', label: 'セキュリティログ', icon: <Shield size={24} />, color: '#ef4444' },
     ];
 
     return (
