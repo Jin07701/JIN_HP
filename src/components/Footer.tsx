@@ -42,7 +42,15 @@ export default function Footer() {
         ]}
     ];
 
-    const displaySections = (sections.length > 0 ? sections : defaultSections).filter(section => {
+    const displaySections = (sections.length > 0 ? sections : defaultSections).map(section => {
+        if (!section.footer_links || section.footer_links.length === 0) {
+            const defaultSec = defaultSections.find(ds => ds.title === section.title);
+            if (defaultSec) {
+                return { ...section, footer_links: defaultSec.footer_links };
+            }
+        }
+        return section;
+    }).filter(section => {
         // Find matching global section visibility
         const keyMap: Record<string, string> = {
             '事業内容': 'service',
@@ -72,7 +80,9 @@ export default function Footer() {
                         <div key={idx} className={styles.column}>
                             <h3 className={styles.colTitle}>{section.title}</h3>
                             <ul className={styles.linkList}>
-                                {section.footer_links?.sort((a: any, b: any) => a.order - b.order).map((link: any, lIdx: number) => (
+                                {([...(section.footer_links || [])])
+                                    .sort((a: any, b: any) => (a.order || 0) - (b.order || 0))
+                                    .map((link: any, lIdx: number) => (
                                     <li key={lIdx}>
                                         {link.url.startsWith('http') ? (
                                             <a href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a>

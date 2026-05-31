@@ -16,7 +16,7 @@ export default function Navbar() {
     const pathname = usePathname();
     const router = useRouter();
 
-    const [sections, setSections] = useState<any[]>([]);
+    const [sections, setSections] = useState<any[]>([]) // eslint-disable-line @typescript-eslint/no-explicit-any;
 
     useEffect(() => {
         async function fetchSections() {
@@ -33,9 +33,7 @@ export default function Navbar() {
                 id: 'service',
                 label: t('事業内容', 'Service'),
                 subItems: [
-                    { id: 'service', label: t('ラインナップ', 'Lineup') },
-                    { id: 'consulting', label: t('ITコンサルティング', 'IT Consulting') },
-                    { id: 'security', label: t('セキュリティ診断', 'Security') }
+                    { id: 'service', label: t('事業内容', 'Service') }
                 ]
             },
             {
@@ -43,7 +41,7 @@ export default function Navbar() {
                 label: t('企業情報', 'Company'),
                 subItems: [
                     { id: 'company', label: t('会社概要', 'About Us') },
-                    { id: 'message', label: t('代表メッセージ', 'Message') },
+                    { id: 'person', label: t('代表メッセージ', 'Message') },
                     { id: 'news', label: t('ニュース', 'News') }
                 ]
             },

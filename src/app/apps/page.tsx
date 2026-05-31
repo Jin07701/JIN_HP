@@ -2,13 +2,14 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SubpageHeader from '@/components/SubpageHeader';
 import { supabase } from '@/lib/supabase';
-import { Smartphone, ExternalLink, Globe } from 'lucide-react';
+import { Smartphone, Globe } from 'lucide-react';
 import styles from './Apps.module.css';
 
 export const revalidate = 0;
 
 export default async function AppsPage() {
     let { data: appsData } = await supabase.from('apps').select('*').order('order', { ascending: true });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     appsData = appsData?.filter((app: any) => app.is_visible !== false) || [];
     const breadcrumbs = [{ label: 'アプリ一覧', href: '' }];
 
